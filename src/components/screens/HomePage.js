@@ -4,7 +4,17 @@ class HomePage extends Component {
 	render() {
 		return (
 			<div>
-				<p>HomePage</p>
+        <p>HomePage</p>
+        
+          <div className="row">
+            <div className="col-md-12">
+      
+              <button className="btn btn-primary">
+              asdwlakdlçskdlçaskdlçk
+              </button>
+
+            </div>
+          </div>
 			</div>
 		);
 	}
