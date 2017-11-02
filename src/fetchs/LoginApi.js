@@ -2,22 +2,17 @@ class LoginApi {
 
   static login(credentials) {
 
-    fetch('http://localhost:4000/auth/users', {
+    return fetch('http://localhost:4000/auth/users', {
       method: "POST",
-      headers: {"Content-Type": "application/json"},
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify(credentials)
 
-    }).then(response => {     
+    }).then(response => {
       return response.json();
-      
-    }).then(function(responseJson) {
-       console.log(responseJson);
-       return responseJson;
-      
+
     }).catch(error => {
-      console.log(error);
       return error;
-      
+
     });
   }
 }

@@ -1,7 +1,7 @@
 const sessionReducerDefaultState = {
-  jwt: '',
-  userType: '',
-  lang: '',
+  jwt: undefined,
+  userType: undefined,
+  lang: undefined,
   translateStrings: {}
 };
 

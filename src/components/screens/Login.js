@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux'
 
 import LoginApi from '../../fetchs/LoginApi';
+import { setJWTToken, setUserType } from '../../store/reducers/actions/session'
 
 class Login extends Component {
 
@@ -12,8 +14,13 @@ class Login extends Component {
 		this.handleChangeEmail = this.handleChangeEmail.bind(this);
 	}
 
+
 	handleLogin = () => {
-		LoginApi.login(this.state);
+		LoginApi.login(this.state).then((jsonLogin) => {
+			this.props.dispatch(setJWTToken(jsonLogin.token));
+			this.props.dispatch(setUserType(jsonLogin.userType));
+			console.log(store.getState());
+		});
 	}
 
 	handleChangeEmail = (event) => {
@@ -42,6 +49,6 @@ class Login extends Component {
 		);
 	}
 }
-
+Login = connect()(Login);
 
 export default Login;

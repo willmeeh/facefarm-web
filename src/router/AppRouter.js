@@ -24,7 +24,7 @@ class AppRouter extends Component {
 
 
 	render() {
-		if (this.state.userType === 'admin') {
+		if (store.getState().session.userType === 'agricultor') {
 			return (
 				<BrowserRouter>
 					<div>
@@ -60,7 +60,8 @@ class AppRouter extends Component {
 }
 
 function isLoggedIn() {
-	return false;
+	console.log(store.getState().session.userType);
+	return store.getState().session.userType !== undefined;
 }
 
 export default AppRouter;

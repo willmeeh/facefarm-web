@@ -8,8 +8,9 @@ import './css/styles.scss';
 import 'normalize.css/normalize.css';
 
 const store = configureStore();
-// const state = store.getState();
-// console.log(state);
+const state = store.getState();
+console.log(state);
+window.store = store;
 
 const pageController = (
   <Provider store={store}>
