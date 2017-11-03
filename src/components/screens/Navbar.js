@@ -6,41 +6,39 @@ import {
 } from 'react-router-dom';
 
 
-class App extends Component {
+class Navbar extends Component {
+	constructor(props) {
+		super(props);
+		this.state = { userType: '' };
+		this.state.userType = store.getState().session.userType;
+	}
+
 	render() {
-		if (this.props.logged_in) {
-			return (
+		return (
+			(this.state.userType === 'agricultor' ?
 				<nav>
 					<div>
 						<NavLink to="/">Home</NavLink>
-						{" | "}
-						<Link to="/login" >Login</Link>
-						{" | "}
-						<a href="/rotaprotegida">Rota protegida</a>
-						<h1>Usuário logado no sistema</h1>
-					</div>
-				</nav>
-			);
-		} else {
-			return (
-				<nav>
-					<div>
-						<NavLink to="/">Home</NavLink>
-						{" | "}
-						<Link to="/login" >Login</Link>
-						{" | "}
-						<Link to="/about">About</Link>
 						{" | "}
 						<Link to="/protectedroute">Rota protegida</Link>
 						{" | "}
-						<Link to="/createaccount">Criar conta</Link>
+						<Link to="/currency">Currency</Link>
 						{" | "}
+						<Link to="/logout">Logout</Link>
+						{" | "}
+						<h1>Usuário logado no sistema</h1>
+					</div>
+				</nav>
+				:
+				<nav>
+					<div>
+						<NavLink to="/login">Login</NavLink>
 						<h1>Usuário não logado</h1>
 					</div>
 				</nav>
-			);
-		}
+			)
+		);
 	}
-}
+};
 
-export default App;
+export default Navbar;

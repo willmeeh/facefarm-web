@@ -1,10 +1,14 @@
-export const setJWTToken = (jwt = '') => ({
-  type: 'SET_JWT_TOKEN',
-  jwt
+export const initApplication = () => ({
+  type: 'INIT_APPLICATION',
 });
 
-export const setUserType = (userType = '') => ({
-  type: 'SET_USER_TYPE',
+export const resetApplication = () => ({
+  type: 'RESET_APPLICATION',
+});
+
+export const setJWTTokenUserType = ( jwt = '', userType = '') => ({
+  type: 'SET_JWT_TOKEN_USER_TYPE',
+  jwt,
   userType
 });
 
