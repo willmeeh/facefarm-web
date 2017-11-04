@@ -15,7 +15,6 @@ class Login extends Component {
 	handleLogin = (e) => {
 		e.preventDefault();
 		LoginApi.login(this.state).then((jsonLogin) => {
-			console.log(jsonLogin);
 			this.props.dispatch(setJWTTokenUserType(jsonLogin.jwt, jsonLogin.userType));
 			location.reload();
 		}).catch((e) => {
