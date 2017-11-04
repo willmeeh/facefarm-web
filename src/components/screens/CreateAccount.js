@@ -9,18 +9,11 @@ class CreateAccount extends Component {
     this.state = {
       login: '', senha: '', nomeCompleto: '', cpf: '', email: '', dataNascimento: ''
     };
-
-    this.handleLogin = this.handleLogin.bind(this);
-
-    this.handleChangeNomeCompleto = this.handleChangeNomeCompleto.bind(this);
-    this.handleChangeLogin = this.handleChangeLogin.bind(this);
-    this.handleChangeEmail = this.handleChangeEmail.bind(this);
-    this.handleChangeCPF = this.handleChangeCPF.bind(this);
-    this.handleChangeDataNascimento = this.handleChangeDataNascimento.bind(this);
-    this.handleChangeSenha = this.handleChangeSenha.bind(this);
   }
 
-  handleLogin = () => {
+  handleRegister = (e) => {
+    e.preventDefault();
+    alert('não implementado')
     CreateAccountApi.create(this.state);
   }
 
@@ -50,39 +43,87 @@ class CreateAccount extends Component {
 
   render() {
     return (
-      <div>
-        <form onSubmit={this.handleLogin}>
-          <label>
-            Nome Completo:
-					</label>
-          <input type="text" value={this.state.nomeCompleto} onChange={this.handleChangeNomeCompleto} />
+      <div className="row register-background">
+        <div className="col-md-12">
+          <div className="register-box">
+            <div className="register-logo">
+                <a href="index2.html"><b>Face</b>Farm</a>
+            </div>
 
-          <label>
-            Login:
-					</label>
-          <input type="text" value={this.state.login} onChange={this.handleChangeLogin} />
+            <div className="register-box-body">
+              <p className="login-box-msg">Abrir uma conta</p>
 
-          <label>
-            Email:
-					</label>
-          <input type="text" value={this.state.email} onChange={this.handleChangeEmail} />
-
-          <label>
-            CPF:
-					</label>
-          <input type="text" value={this.state.CPF} onChange={this.handleChangeCPF} />
-
-          <label>
-            Data nascimento:
-					</label>
-          <input type="text" value={this.state.dataNascimento} onChange={this.handleChangeDataNascimento} />
-
-          <label>
-            Senha:
-					</label>
-          <input type="password" value={this.state.senha} onChange={this.handleChangeSenha} />
-          <button type="button" onClick={this.handleLogin}>Enviar button</button>
-        </form>
+              <form action="../../index.html" method="post" onSubmit={this.handleRegister}>
+                  <div className="form-group has-feedback">
+                      <input 
+                        type="text" 
+                        className="form-control" 
+                        placeholder="Nome completo"
+                        value={this.state.nomeCompleto} 
+                        onChange={this.handleChangeNomeCompleto} 
+                      />
+                      <span className="glyphicon glyphicon-user form-control-feedback"></span>
+                  </div>
+                  <div className="form-group has-feedback">
+                    <input 
+                      type="text" 
+                      className="form-control"
+                      placeholder="Login"
+                      value={this.state.login} 
+                      onChange={this.handleChangeLogin} 
+                    />
+                    <span className="glyphicon glyphicon-log-in form-control-feedback"></span>
+                  </div>
+                  <div className="form-group has-feedback">
+                    <input 
+                      type="email" 
+                      className="form-control" 
+                      placeholder="Email"
+                      value={this.state.email} 
+                      onChange={this.handleChangeEmail}
+                    />
+                    <span className="glyphicon glyphicon-envelope form-control-feedback"></span>
+                  </div>
+                  <div className="form-group has-feedback">
+                    <input 
+                      type="text" 
+                      className="form-control" 
+                      placeholder="Cpf/Cnpj"
+                      value={this.state.CPF} 
+                      onChange={this.handleChangeCPF}
+                    />
+                    <span className=" form-control-feedback"></span>
+                  </div>
+                  <div className="form-group has-feedback">
+                    <input 
+                      type="text" 
+                      className="form-control" 
+                      placeholder="Data de nascimento"
+                      value={this.state.dataNascimento} 
+                      onChange={this.handleChangeDataNascimento} 
+                    />
+                    <span className=" form-control-feedback"></span>
+                  </div>
+                  
+                  <div className="form-group has-feedback">
+                    <input 
+                      type="password" 
+                      className="form-control" 
+                      placeholder="Senha"
+                      value={this.state.senha} 
+                      onChange={this.handleChangeSenha} 
+                    />
+                    <span className="glyphicon glyphicon-lock form-control-feedback"></span>
+                  </div>
+                  <div className="row">
+                      <div className="col-xs-4">
+                          <button type="submit" className="btn btn-primary btn-block btn-flat">Register</button>
+                      </div>
+                  </div>
+              </form>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
