@@ -34,18 +34,58 @@ class Login extends Component {
 
 	render() {
 		return (
-			<div>
-				<form onSubmit={this.handleLogin}>
-					<label>
-						Email:
-					</label>
-					<input type="text" value={this.state.email} onChange={this.handleChangeEmail} />
-					<label>
-						Senha:
-					</label>
-					<input type="password" value={this.state.senha} onChange={this.handleChangeSenha} />
-					<button type="button" onClick={this.handleLogin}>Enviar button</button>
-				</form>
+			<div className="backstretch-login">
+        <div className="login-box">
+          <div className="login-logo">
+            <a href=""><b>Face</b>Farm</a>
+          </div>
+          <div className="login-box-body">
+          <p className="login-box-msg">Faça login para iniciar sua sessão</p>
+
+          <form onSubmit={this.handleLogin}>
+            <div className="form-group has-feedback">
+              <input 
+                type="email" 
+                className="form-control" 
+                placeholder="Email"
+                value={this.state.email} 
+                onChange={this.handleChangeEmail}
+              />
+              <span className="glyphicon glyphicon-envelope form-control-feedback"></span>
+            </div>
+            <div className="form-group has-feedback">
+              <input 
+                type="password" 
+                className="form-control" 
+                placeholder="Senha"
+                value={this.state.senha} 
+                onChange={this.handleChangeSenha}
+              />
+              <span className="glyphicon glyphicon-lock form-control-feedback"></span>
+            </div>
+            <div className="row">
+              <div className="col-xs-8">
+                  <div className="checkbox icheck">
+                    <a href="register.html" className="text-center">Criar nova conta</a>
+                  </div>
+              </div>
+              <div className="col-xs-4">
+                  <a href="/public/dashboard.html">
+                    <button type="submit" className="btn btn-primary btn-block btn-flat">Entrar</button>
+                  </a>
+              </div>
+            </div>
+          </form>
+
+          </div>
+        </div>  
+        
+
+
+
+
+
+				
 			</div>
 		);
 	}
