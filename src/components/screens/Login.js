@@ -63,7 +63,8 @@ class Login extends Component {
 c
 	render() {
 		return (
-				<div className="" className="login-background">
+			<div className="row login-background">
+				<div className="col-md-12">
 					<div className="login-box">
 						<div className="login-logo">
 							<a href=""><b>Face</b>Farm</a>
@@ -105,10 +106,10 @@ c
 								</div>
 							</div>
 						</form>
-
 						</div>
 					</div> 
 				</div>
+			</div>
 		);
 	}
 }
