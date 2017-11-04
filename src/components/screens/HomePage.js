@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 
+import Navbar from './Navbar'
+
 class HomePage extends Component {
 	render() {
 		return (
 			<div>
+        <Navbar/>
         <p>HomePage</p>
         
           <div className="row">

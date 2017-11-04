@@ -7,10 +7,10 @@ class LoginApi {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(credentials)
 
-    }).then(response => {
+    }).then((response) => {
       return response.json();
 
-    }).catch(error => {
+    }).catch((e) => {
       return error;
 
     });
