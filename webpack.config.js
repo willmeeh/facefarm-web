@@ -10,18 +10,23 @@ module.exports = {
     },
     module: {
         rules: [{
-            loader: 'babel-loader',
-            test: /\.js$/,
-            exclude: /node_modules/
-        }, {
-            test: /\.s?css$/, // s is optional
-            use: [
-                'style-loader',
-                'css-loader',
-                'sass-loader'
-            ]
-        }
-    ]
+                loader: 'babel-loader',
+                test: /\.js$/,
+                exclude: /node_modules/
+            }, {
+                test: /\.s?css$/, // s is optional
+                use: [
+                    'style-loader',
+                    'css-loader',
+                    'sass-loader'
+                ]
+            },
+            {
+                test: /\.(jpe?g|png|gif|svg)$/i,
+                loader: "url-loader?name=app/images/[name].[ext]"
+            }
+
+        ]
     },
     devtool: 'cheap-module-eval-source-map',
     devServer: {
