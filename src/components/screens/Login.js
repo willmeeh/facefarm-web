@@ -39,44 +39,44 @@ class Login extends Component {
 							<Link to=""><b>Face</b>Farm</Link>
 						</div>
 						<div className="login-box-body">
-						<p className="login-box-msg">Faça login para iniciar sua sessão</p>
-
-						<form onSubmit={this.handleLogin}>
-							<div className="form-group has-feedback">
-								<input 
-									type="email" 
-									className="form-control" 
-									placeholder="Email"
-									value={this.state.email} 
-									onChange={this.handleChangeEmail}
-								/>
-								<span className="glyphicon glyphicon-envelope form-control-feedback"></span>
-							</div>
-							<div className="form-group has-feedback">
-								<input 
-									type="password" 
-									className="form-control" 
-									placeholder="Senha"
-									value={this.state.senha} 
-									onChange={this.handleChangeSenha}
-								/>
-								<span className="glyphicon glyphicon-lock form-control-feedback"></span>
-							</div>
-							<div className="row">
-								<div className="col-xs-8">
+							<p className="login-box-msg">Faça login para iniciar sua sessão</p>
+							<form onSubmit={this.handleLogin}>
+								<div className="form-group has-feedback">
+									<input
+										type="email"
+										className="form-control"
+										placeholder="Email"
+										value={this.state.email}
+										onChange={this.handleChangeEmail} />
+									<span className="glyphicon glyphicon-envelope form-control-feedback"></span>
+								</div>
+								<div className="form-group has-feedback">
+									<input
+										type="password"
+										className="form-control"
+										placeholder="Senha"
+										value={this.state.senha}
+										onChange={this.handleChangeSenha} />
+									<span className="glyphicon glyphicon-lock form-control-feedback"></span>
+								</div>
+								<div className="row">
+									<div className="col-xs-8">
 										<div className="checkbox icheck">
 											<Link to="/CreateAccount" className="text-center">
 												Criar nova conta
 											</Link>
 										</div>
+									</div>
+									<div className="col-xs-4">
+										<button type="submit"
+											className="btn btn-primary btn-block btn-flat">
+											Entrar
+										 </button>
+									</div>
 								</div>
-								<div className="col-xs-4">
-									<button type="submit" className="btn btn-primary btn-block btn-flat">Entrar</button>
-								</div>
-							</div>
-						</form>
+							</form>
 						</div>
-					</div> 
+					</div>
 				</div>
 			</div>
 		);
