@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 
-import { resetApplication } from '../../store/reducers/actions/session'
+import { resetApplication } from '../../store/actions/session'
 
 class Logout extends Component {
 

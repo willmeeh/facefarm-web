@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom';
 
 import LoginApi from '../../fetchs/LoginApi';
-import { setJWTTokenUserType } from '../../store/reducers/actions/session'
+import { setJWTTokenUserType } from '../../store/actions/session'
 
 class Login extends Component {
 
