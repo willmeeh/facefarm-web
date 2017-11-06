@@ -27,7 +27,7 @@ class Currency extends Component {
       <div>
         <label>
           Currency:
-					</label>
+          </label>
         <input type="text" value={this.state.base} onChange={this.handleChangeBase} />
         <p></p>
         <button type="button" onClick={this.handleLoadCurrency}>Load</button>

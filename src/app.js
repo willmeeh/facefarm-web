@@ -16,7 +16,7 @@ window.store = store;
 
 const pageController = (
   <Provider store={store}>
-      <AppRouter />
+    <AppRouter />
   </Provider>
 );
 

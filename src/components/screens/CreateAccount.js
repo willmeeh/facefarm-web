@@ -99,20 +99,20 @@ class CreateAccount extends Component {
                   <span className="glyphicon glyphicon-lock form-control-feedback"></span>
                 </div>
                 <div className="row">
-									<div className="col-xs-8">
-										<div className="checkbox icheck">
-											<Link to="/login" className="text-center">
-												Fazer login
-											</Link>
-										</div>
-									</div>
-									<div className="col-xs-4">
-										<button type="submit"
-											className="btn btn-primary btn-block btn-flat">
-											Registrar
-										 </button>
-									</div>
-								</div>
+                  <div className="col-xs-8">
+                    <div className="checkbox icheck">
+                      <Link to="/login" className="text-center">
+                        Fazer login
+                      </Link>
+                    </div>
+                  </div>
+                  <div className="col-xs-4">
+                    <button type="submit"
+                      className="btn btn-primary btn-block btn-flat">
+                      Registrar
+                     </button>
+                  </div>
+                </div>
               </form>
             </div>
           </div>

@@ -1,10 +1,11 @@
 import React from 'react';
-import { 
+import {
   Redirect,
   Route,
   Switch
- } from 'react-router-dom';
+} from 'react-router-dom';
 import RouterCreate from '../extended/RouterCreate';
+import PrivateRouter from '../extended/PrivateRouter';
 
 import ProtectedRoute from '../components/screens/ProtectedRoute';
 import About from '../components/screens/About';
@@ -17,13 +18,13 @@ const AgricultorRouter = (props) => {
   return (
     <div>
       <Switch>
-      <RouterCreate exact path="/" component={HomePage} onEnter={props.isLoggedIn} />
-      <RouterCreate exact path="/protectedroute" component={ProtectedRoute} onEnter={props.isLoggedIn} />
-      <RouterCreate exact path="/currency" component={Currency} onEnter={props.isLoggedIn} />
-      <RouterCreate exact path="/logout" component={ () => <Logout updateUserType={props.updateUserType}/>} />
-      <RouterCreate exact path="/about" component={About} onEnter={props.isLoggedIn} />
+        <RouterCreate exact path="/" component={() => <HomePage updateUserType={props.updateUserType} />} onEnter={props.isLoggedIn} />
+        <RouterCreate exact path="/protectedroute" component={ProtectedRoute} onEnter={props.isLoggedIn} />
+        <RouterCreate exact path="/currency" component={Currency} onEnter={props.isLoggedIn} />
+        <RouterCreate exact path="/logout" component={() => <Logout updateUserType={props.updateUserType} />} />
+        <RouterCreate exact path="/about" component={About} onEnter={props.isLoggedIn} />
 
-      <Route component={() => <Redirect to="/" />} />
+        <Route component={() => <Redirect to="/" />} />
       </Switch>
     </div>
   );

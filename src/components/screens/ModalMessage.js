@@ -20,7 +20,7 @@ class modalMessage extends Component {
   }
 
   componentWillReceiveProps(newProps) {
-    this.setState({titulo: newProps.titulo, coteudo: newProps.conteudo, showModal: newProps.showModal });
+    this.setState({ titulo: newProps.titulo, coteudo: newProps.conteudo, showModal: newProps.showModal });
   }
 
   render() {

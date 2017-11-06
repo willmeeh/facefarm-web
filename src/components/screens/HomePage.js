@@ -1,26 +1,39 @@
 import React, { Component } from 'react';
 
-import Navbar from './Navbar'
+import Header from './Header';
+import MenuLeft from './MenuLeft';
+import Footer from './Footer';
+import Curremcy from './users/Currency';
 
 class HomePage extends Component {
-	render() {
-		return (
-			<div>
-        <Navbar/>
-        <p>HomePage</p>
-        
-          <div className="row">
-            <div className="col-md-12">
-      
-              <button className="btn btn-primary">
-              asdwlakdlçskdlçaskdlçk
-              </button>
+  constructor(props) {
+    super(props);
+    console.log("HOMEPAGE PROPS:", props);
+  }
 
-            </div>
+  render() {
+    return (
+      <div className=" skin-green-light sidebar-mini auto-height" >
+        <div className="wrapper auto-height">
+          <Header updateUserType={this.props.updateUserType} />
+          <aside className="main-sidebar">
+            <section className="sidebar auto-height">
+              <MenuLeft />
+            </section>
+          </aside>
+          <div className="content-wrapper">
+            <section className="content-header" ></section>
+            <section className="content">
+
+              <Curremcy />
+
+            </section>
           </div>
-			</div>
-		);
-	}
+          <Footer />
+        </div>
+      </div>
+    );
+  }
 }
 
 export default HomePage;

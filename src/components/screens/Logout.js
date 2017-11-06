@@ -5,24 +5,24 @@ import { resetApplication } from '../../store/actions/session'
 
 class Logout extends Component {
 
-	constructor(props) {
-		super(props);
+  constructor(props) {
+    super(props);
 
-		this.handleLogout = this.handleLogout.bind(this);
-	}
+    this.handleLogout = this.handleLogout.bind(this);
+  }
 
-	handleLogout = () => {
+  handleLogout = () => {
     this.props.dispatch(resetApplication());
     this.props.updateUserType('');
-	}
+  }
 
-	render() {
-		return (
-			<div>
-					<button type="button" onClick={this.handleLogout}>Logout</button>
-			</div>
-		);
-	}
+  render() {
+    return (
+      <div>
+        <button type="button" onClick={this.handleLogout}>Logout</button>
+      </div>
+    );
+  }
 }
 Logout = connect()(Logout);
 

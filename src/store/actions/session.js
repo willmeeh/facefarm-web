@@ -6,7 +6,7 @@ export const resetApplication = () => ({
   type: 'RESET_APPLICATION',
 });
 
-export const setJWTTokenUserType = ( jwt = '', userType = '') => ({
+export const setJWTTokenUserType = (jwt = '', userType = '') => ({
   type: 'SET_JWT_TOKEN_USER_TYPE',
   jwt,
   userType

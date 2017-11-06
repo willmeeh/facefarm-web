@@ -12,7 +12,7 @@ const DefaultRouter = (props) => {
   return (
     <div>
       <Switch>
-        <RouterCreate exact path="/login" component={() => props.onEnter() ? <Redirect to="/" /> : <Login  updateUserType={props.updateUserType}/>}  />
+        <RouterCreate exact path="/login" component={() => props.onEnter() ? <Redirect to="/" /> : <Login updateUserType={props.updateUserType} />} />
         <RouterCreate exact path="/CreateAccount" component={CreateAccount} />
 
         <Route component={() => <Redirect to="/login" />} />
