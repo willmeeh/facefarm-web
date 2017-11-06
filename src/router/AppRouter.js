@@ -45,23 +45,15 @@ class AppRouter extends Component {
     return (
       (this.state.userType === 'agricultor' ?
         <BrowserRouter>
-          <AgricultorRouter onEnter={isLoggedIn} updateUserType={this.updateUserType} />
+          <AgricultorRouter  updateUserType={this.updateUserType} />
         </BrowserRouter>
         :
         <BrowserRouter>
-          <DefaultRouter onEnter={isLoggedIn} updateUserType={this.updateUserType} />
+          <DefaultRouter  updateUserType={this.updateUserType} />
         </BrowserRouter>
       )
     );
   }
-}
-function isLoggedIn() {
-  let userType = JSON.parse(localStorage.getItem('facefarm'));
-  return userType !== undefined && userType !== '' && userType !== null;
-}
-
-function isNotLogged() {
-  return !isLoggedIn();
 }
 
 export default AppRouter;

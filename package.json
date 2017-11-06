@@ -35,5 +35,6 @@
   },
   "scripts": {
     "start": "webpack-dev-server"
+    // "start": "webpack-dev-server --host 192.168.0.122 --port 8080"
   }
 }

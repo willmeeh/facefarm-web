@@ -18,11 +18,11 @@ const AgricultorRouter = (props) => {
   return (
     <div>
       <Switch>
-        <RouterCreate exact path="/" component={() => <HomePage updateUserType={props.updateUserType} />} onEnter={props.isLoggedIn} />
-        <RouterCreate exact path="/protectedroute" component={ProtectedRoute} onEnter={props.isLoggedIn} />
-        <RouterCreate exact path="/currency" component={Currency} onEnter={props.isLoggedIn} />
-        <RouterCreate exact path="/logout" component={() => <Logout updateUserType={props.updateUserType} />} />
-        <RouterCreate exact path="/about" component={About} onEnter={props.isLoggedIn} />
+        <Route exact path="/" component={() => <HomePage updateUserType={props.updateUserType} />}  />
+        <Route exact path="/protectedroute" component={ProtectedRoute}  />
+        <Route exact path="/currency" component={Currency}  />
+        <Route exact path="/logout" component={() => <Logout updateUserType={props.updateUserType} />} />
+        <Route exact path="/about" component={About}  />
 
         <Route component={() => <Redirect to="/" />} />
       </Switch>

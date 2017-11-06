@@ -36,11 +36,11 @@ class Login extends Component {
   }
 
   handleChangeEmail = (event) => {
-    this.setState({ email: event.target.value });
+    this.setState({ email: event.target.value, showModal: false });
   }
 
   handleChangeSenha = (event) => {
-    this.setState({ senha: event.target.value });
+    this.setState({ senha: event.target.value, showModal: false });
   }
 
   render() {
