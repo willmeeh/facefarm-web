@@ -13,7 +13,7 @@ class HomePage extends Component {
 
   render() {
     return (
-      <div className=" skin-green-light sidebar-mini auto-height" >
+      <div>
         <div className="wrapper auto-height">
           <Header updateUserType={this.props.updateUserType} />
           <aside className="main-sidebar">

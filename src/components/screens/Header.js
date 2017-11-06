@@ -13,7 +13,7 @@ class Header extends Component {
   render() {
     return (
       <div>
-        <header className="main-header">
+        <aside className="main-header">
 
           <a href="#home" className="logo">
             <span className="logo-mini"><b>F</b>F</span>
@@ -21,9 +21,9 @@ class Header extends Component {
           </a>
 
           <nav className="navbar navbar-static-top">
-            <a href="" className="sidebar-toggle" data-toggle="offcanvas" role="button">
+            <span className="sidebar-toggle" data-toggle="offcanvas" role="button">
               <span className="sr-only">Toggle navigation</span>
-            </a>
+            </span>
             <div className="navbar-custom-menu">
               <ul className="nav navbar-nav">
                 <li className="dropdown notifications-menu">
@@ -100,7 +100,9 @@ class Header extends Component {
             </div>
 
           </nav>
-        </header>
+        </aside>
+
+        
       </div>
     );
   }
