@@ -13,7 +13,7 @@ class Logout extends Component {
 
 	handleLogout = () => {
     this.props.dispatch(resetApplication());
-    location.reload();
+    this.props.updateUserType('');
 	}
 
 	render() {

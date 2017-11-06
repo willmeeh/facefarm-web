@@ -20,7 +20,7 @@ const AgricultorRouter = (props) => {
       <RouterCreate exact path="/" component={HomePage} onEnter={props.isLoggedIn} />
       <RouterCreate exact path="/protectedroute" component={ProtectedRoute} onEnter={props.isLoggedIn} />
       <RouterCreate exact path="/currency" component={Currency} onEnter={props.isLoggedIn} />
-      <RouterCreate exact path="/logout" component={Logout} onEnter={props.isLoggedIn} />
+      <RouterCreate exact path="/logout" component={ () => <Logout updateUserType={props.updateUserType}/>} />
       <RouterCreate exact path="/about" component={About} onEnter={props.isLoggedIn} />
 
       <Route component={() => <Redirect to="/" />} />

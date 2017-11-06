@@ -12,7 +12,7 @@ class Currency extends Component {
   }
 
   handleLoadCurrency = () => {
-    CurrencyApi.get(this.state).then((jsonCurrency) => {
+    CurrencyApi.get({base: this.state.base}).then((jsonCurrency) => {
       console.log(jsonCurrency);
       this.setState({ jsonCurrency: jsonCurrency });
     });

@@ -16,17 +16,27 @@ import DefaultRouter from './DefaultRouter'
 class AppRouter extends Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+			userType: sessionStorage.getItem('userType')
+		};
+
+  }
+
+  updateUserType = (userType) => {
+    console.log(userType);
+    this.setState({userType: userType});
   }
 
   render() {
     return (
-      (sessionStorage.getItem('userType') === 'agricultor' ?
+      (this.state.userType === 'agricultor' ?
         <BrowserRouter>
-          <AgricultorRouter onEnter={isLoggedIn}/>
+          <AgricultorRouter onEnter={isLoggedIn} updateUserType={this.updateUserType}/>
         </BrowserRouter>
         :
         <BrowserRouter>
-          <DefaultRouter onEnter={isLoggedIn}/>
+          <DefaultRouter onEnter={isLoggedIn} updateUserType={this.updateUserType}/>
         </BrowserRouter>
       )
     );

@@ -1,7 +1,6 @@
 class LoginApi {
 
   static login(credentials) {
-    console.log('login');
 
     return fetch('http://localhost:4000/auth/users', {
       method: "POST",
@@ -10,9 +9,6 @@ class LoginApi {
 
     }).then((response) => {
       return response.json();
-
-    }).catch((e) => {
-      return error;
 
     });
   }

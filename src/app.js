@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
+
 import configureStore from './store/configureStore';
 import AppRouter from './router/AppRouter';
 import { initApplication } from './store/actions/session'
 
 import './css/styles.scss';
-import 'normalize.css/normalize.css';
 
 const store = configureStore();
 const state = store.getState();
@@ -16,7 +16,7 @@ window.store = store;
 
 const pageController = (
   <Provider store={store}>
-    <AppRouter />
+      <AppRouter />
   </Provider>
 );
 

@@ -1,24 +1,38 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
 import LoginApi from '../../fetchs/LoginApi';
 import { setJWTTokenUserType } from '../../store/actions/session'
+
+
+import ModalMessage from './ModalMessage';
 
 class Login extends Component {
 
 	constructor(props) {
 		super(props);
-		this.state = { email: '', senha: '' };
+		this.state = {
+			email: '', senha: '', e: false, showModal: false,
+			modalTitulo: '', modalConteudo: ''
+		};
 	}
 
 	handleLogin = (e) => {
 		e.preventDefault();
-		LoginApi.login(this.state).then((jsonLogin) => {
-			this.props.dispatch(setJWTTokenUserType(jsonLogin.jwt, jsonLogin.userType));
-			location.reload();
+		LoginApi.login({ email: this.state.email, senha: this.state.senha }).then((jsonLogin) => {
+			if (jsonLogin.cod) {
+				this.setState({ modalTitulo: 'Erro!', modalConteudo: 'Não foi possivel estabelecer conexão com o servidor!1', showModal: true });
+				this.state.e = true;
+			} else {
+				this.props.dispatch(setJWTTokenUserType(jsonLogin.jwt, jsonLogin.userType));
+				this.props.updateUserType(jsonLogin.userType);
+			}
 		}).catch((e) => {
-			console.log(e);
+			if (e) {
+				this.setState({ modalTitulo: 'Erro!', modalConteudo: 'Não foi possivel estabelecer conexão com o servidor!2', showModal: true });
+				this.state.e = true;
+			}
 		});
 	}
 
@@ -32,7 +46,10 @@ class Login extends Component {
 
 	render() {
 		return (
+
 			<div className="row login-background">
+				<ModalMessage showModal={this.state.showModal} titulo={this.state.modalTitulo} conteudo={this.state.modalConteudo} message={'teste'} />
+
 				<div className="col-md-12">
 					<div className="login-box">
 						<div className="login-logo">
@@ -85,4 +102,4 @@ class Login extends Component {
 
 Login = connect()(Login);
 
-export default Login;
+export default withRouter(Login);
