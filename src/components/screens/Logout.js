@@ -12,14 +12,14 @@ class Logout extends Component {
 	}
 
 	handleLogout = () => {
-    this.props.dispatch(resetApplication());
-    location.reload();
+		this.props.dispatch(resetApplication());
+		this.props.history.push('/login');
 	}
 
 	render() {
 		return (
 			<div>
-					<button type="button" onClick={this.handleLogout}>Logout</button>
+				<button type="button" onClick={this.handleLogout}>Logout</button>
 			</div>
 		);
 	}

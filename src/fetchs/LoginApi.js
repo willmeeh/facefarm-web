@@ -12,7 +12,7 @@ class LoginApi {
       return response.json();
 
     }).catch((e) => {
-      return error;
+      return e;
 
     });
   }

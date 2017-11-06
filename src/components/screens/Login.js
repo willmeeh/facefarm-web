@@ -1,22 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom';
-
+import { Link, withRouter } from 'react-router-dom';
 import LoginApi from '../../fetchs/LoginApi';
 import { setJWTTokenUserType } from '../../store/actions/session'
 
 class Login extends Component {
-
-	constructor(props) {
-		super(props);
-		this.state = { email: '', senha: '' };
-	}
+	state = { email: '', senha: '' };
 
 	handleLogin = (e) => {
 		e.preventDefault();
 		LoginApi.login(this.state).then((jsonLogin) => {
+			console.log(jsonLogin);
 			this.props.dispatch(setJWTTokenUserType(jsonLogin.jwt, jsonLogin.userType));
-			location.reload();
+			this.props.history.push('/');
 		}).catch((e) => {
 			console.log(e);
 		});
@@ -85,4 +81,4 @@ class Login extends Component {
 
 Login = connect()(Login);
 
-export default Login;
+export default withRouter(Login);

@@ -2,9 +2,10 @@ import React from 'react';
 import { 
   Redirect,
   Route,
-  Switch
+  BrowserRouter
  } from 'react-router-dom';
 import RouterCreate from '../extended/RouterCreate';
+import PrivateRouter from '../extended/PrivateRouter';
 
 import ProtectedRoute from '../components/screens/ProtectedRoute';
 import About from '../components/screens/About';
@@ -16,15 +17,11 @@ import Currency from '../components/screens/users/Currency'
 const AgricultorRouter = (props) => {
   return (
     <div>
-      <Switch>
-      <RouterCreate exact path="/" component={HomePage} onEnter={props.isLoggedIn} />
-      <RouterCreate exact path="/protectedroute" component={ProtectedRoute} onEnter={props.isLoggedIn} />
-      <RouterCreate exact path="/currency" component={Currency} onEnter={props.isLoggedIn} />
-      <RouterCreate exact path="/logout" component={Logout} onEnter={props.isLoggedIn} />
-      <RouterCreate exact path="/about" component={About} onEnter={props.isLoggedIn} />
-
-      <Route component={() => <Redirect to="/" />} />
-      </Switch>
+      <Route exact={true} path="/" component={HomePage} onEnter={console.log('entrei aqui')} />
+      <Route exact path="/protectedroute" component={ProtectedRoute}  />
+      <Route exact path="/currency" component={Currency} />
+      <Route exact path="/logout" component={Logout}  />
+      <Route exact path="/about" component={About}  />
     </div>
   );
 }
