@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
+import { withRouter, Link } from 'react-router-dom';
 
 import { resetApplication } from '../../store/actions/session';
 
@@ -7,7 +8,7 @@ class Header extends Component {
 
   handleLogout = () => {
     this.props.dispatch(resetApplication());
-    this.props.updateUserType('');
+    this.props.history.push('/login');
   }
 
   render() {
@@ -15,10 +16,10 @@ class Header extends Component {
       <div>
         <aside className="main-header">
 
-          <a href="#home" className="logo">
+          <Link to="/" className="logo">
             <span className="logo-mini"><b>F</b>F</span>
             <span className="logo-lg"><b>Face</b>FARM</span>
-          </a>
+          </Link>
 
           <nav className="navbar navbar-static-top">
             <span className="sidebar-toggle" data-toggle="offcanvas" role="button">
@@ -110,4 +111,4 @@ class Header extends Component {
 
 Header = connect()(Header);
 
-export default Header;
+export default withRouter(Header);

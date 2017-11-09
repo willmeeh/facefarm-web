@@ -1,11 +1,19 @@
 import React, { Component } from 'react';
+import { Link, withRouter, Route , BrowserRouter} from 'react-router-dom';
+import { connect } from 'react-redux'
 
 import Header from './Header';
 import MenuLeft from './MenuLeft';
 import Footer from './Footer';
 import Curremcy from './users/Currency';
+import UsersRoutes from '../../router/UsersRoutes';
 
-class HomePage extends Component {
+import WeatherForecast from './users/WeatherForecast'
+import CommodityCurrency from './users/CommodityCurrency'
+import Currency from './users/Currency'
+
+
+class FaceFarmLayout extends Component {
   constructor(props) {
     super(props);
     console.log("HOMEPAGE PROPS:", props);
@@ -13,8 +21,7 @@ class HomePage extends Component {
 
   render() {
     return (
-      <div>
-        <div className="wrapper auto-height">
+      <div className="wrapper auto-height">
           <Header updateUserType={this.props.updateUserType} />
           <aside className="main-sidebar">
             <section className="sidebar auto-height">
@@ -25,15 +32,14 @@ class HomePage extends Component {
             <section className="content-header" ></section>
             <section className="content">
 
-              <Curremcy />
-
+              <UsersRoutes />
+            
             </section>
           </div>
           <Footer />
-        </div>
       </div>
     );
   }
 }
 
-export default HomePage;
+export default withRouter(connect()(FaceFarmLayout));

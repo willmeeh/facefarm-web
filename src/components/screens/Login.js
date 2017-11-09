@@ -25,7 +25,8 @@ class Login extends Component {
         this.state.e = true;
       } else {
         this.props.dispatch(setJWTTokenUserType(jsonLogin.jwt, jsonLogin.userType));
-        this.props.updateUserType(jsonLogin.userType);
+        // this.props.updateUserType(jsonLogin.userType);
+        this.props.history.push('/');
       }
     }).catch((e) => {
       if (e) {

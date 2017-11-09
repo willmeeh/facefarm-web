@@ -9,7 +9,7 @@ import PrivateRouter from '../extended/PrivateRouter';
 
 import ProtectedRoute from '../components/screens/ProtectedRoute';
 import About from '../components/screens/About';
-import HomePage from '../components/screens/HomePage';
+// import HomePage from '../components/screens/HomePage';
 import CreateAccount from '../components/screens/CreateAccount'
 import Logout from '../components/screens/Logout'
 import Currency from '../components/screens/users/Currency'

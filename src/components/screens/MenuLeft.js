@@ -1,46 +1,65 @@
 import React, { Component } from 'react';
+import {
+    Redirect,
+    Route,
+    Switch,
+    withRouter,
+    BrowserRouter,
+    Link
+  } from 'react-router-dom';
+import { connect } from 'react-redux'
+import permissions from '../../router/Permissions'
 
-export default class MenuLeft extends Component {
+
+// variavel utilizada somente para ilustracao
+const currentUserPermission = 'agricultor';
+
+const MontarMenuLeft = (route) => {
+    if (route.permissions && route.permissions.search(currentUserPermission) === -1) {
+        return null;
+    }
+
+    if (route.routes && route.label) {
+        return (
+            <li className="treeview">
+                <a href="">
+                    <i className={'fa ' + route.icon}></i> <span>{route.label}</span>
+                    <span className='pull-right-container'>
+                        <i className='fa fa-angle-left pull-right'></i>
+                    </span>
+                </a>
+                <ul className="treeview-menu">
+                    {route.routes.map((route, i) => (
+                        <MontarMenuLeft key={i} {...route}/>
+                    ))}
+                </ul>
+            </li>
+        );
+    } else if (route.label) {
+        return (
+            <li>
+                <Link to={route.path}>
+                    <i className={'fa ' + route.icon}></i> <span>{route.label}</span>
+                </Link>
+            </li>
+        );
+    } else {
+        return (<span></span>);
+    }
+  };
+
+class MenuLeft extends Component {
   render() {
     return (
       <div>
         <ul className="sidebar-menu">
-          <li>
-            <a href="#weatherForecast">
-              <i className="fa fa-sun-o"></i> <span>Previsão do tempo</span>
-            </a>
-          </li>
-
-          <li className="treeview">
-            <a href="">
-              <i className="fa fa-money"></i> <span>Cotações</span>
-              <span className="pull-right-container">
-                <i className="fa fa-angle-left pull-right"></i>
-              </span>
-            </a>
-            <ul className="treeview-menu">
-              <li><a href="#priceListAgricultural"><i className="fa fa-leaf"></i> Agrícola</a></li>
-              <li><a href="#priceListMonetary"><i className="fa fa-money"></i> Monetária</a></li>
-            </ul>
-          </li>
-          <li className="treeview">
-            <a href="">
-              <i className="fa fa-cog"></i> <span>Configurações</span>
-              <span className="pull-right-container">
-                <i className="fa fa-angle-left pull-right"></i>
-              </span>
-            </a>
-            <ul className="treeview-menu">
-              <li><a href="#rightPanelConfig"><i className="fa fa-th"></i><span>Painel lateral direito</span></a></li>
-            </ul>
-          </li>
-          <li>
-            <a href="#anuncio_empresa">
-              <i className="fa fa-bullhorn"></i> <span>Anúncios</span>
-            </a>
-          </li>
+          {permissions.map((opcao, i) => (
+            <MontarMenuLeft key={i} {...opcao}/>
+          ))}
         </ul>
       </div>
     );
   }
 }
+
+export default withRouter(connect()(MenuLeft));

@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux'
 
 import CurrencyApi from '../../../fetchs/CurrencyApi';
 
@@ -40,4 +42,4 @@ class Currency extends Component {
   }
 }
 
-export default Currency;
+export default withRouter(connect()(Currency));

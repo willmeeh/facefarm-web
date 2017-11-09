@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom';
 
 import { resetApplication } from '../../store/actions/session'
 
@@ -13,7 +14,7 @@ class Logout extends Component {
 
   handleLogout = () => {
     this.props.dispatch(resetApplication());
-    this.props.updateUserType('');
+    this.props.history.push('/login');
   }
 
   render() {
@@ -26,4 +27,4 @@ class Logout extends Component {
 }
 Logout = connect()(Logout);
 
-export default Logout;
+export default withRouter(Logout);

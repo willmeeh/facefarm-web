@@ -4,15 +4,16 @@ import {
   Route,
   BrowserRouter,
   Switch,
-  Redirect
+  withRouter,
+  Redirect,
+  browserHistory
 } from 'react-router-dom';
-
-import NotFound from '../components/screens/NotFound';
 
 import ProtectedRoute from '../components/screens/ProtectedRoute';
 
+import NotFound from '../components/screens/NotFound'
 import About from '../components/screens/About';
-import HomePage from '../components/screens/HomePage';
+import FaceFarmLayout from '../components/screens/FaceFarmLayout';
 import CreateAccount from '../components/screens/CreateAccount'
 import Logout from '../components/screens/Logout'
 import Currency from '../components/screens/users/Currency'
@@ -20,7 +21,12 @@ import Currency from '../components/screens/users/Currency'
 import Login from '../components/screens/Login'
 
 import AgricultorRouter from './AgricultorRouter';
+import PrivateRouter from '../extended/PrivateRouter';
 import DefaultRouter from './DefaultRouter';
+import UsersRoutes from './UsersRoutes';
+
+import WeatherForecast from '../components/screens/users/WeatherForecast'
+import CommodityCurrency from '../components/screens/users/CommodityCurrency'
 
 let isAuth = false;
 
@@ -41,19 +47,31 @@ class AppRouter extends Component {
     this.setState({ userType: userType });
   }
 
+//   <BrowserRouter>
+//   <AgricultorRouter  updateUserType={this.updateUserType} />
+// </BrowserRouter>
+
   render() {
     return (
-      (this.state.userType === 'agricultor' ?
-        <BrowserRouter>
-          <AgricultorRouter  updateUserType={this.updateUserType} />
-        </BrowserRouter>
-        :
-        <BrowserRouter>
-          <DefaultRouter  updateUserType={this.updateUserType} />
+      (
+        <BrowserRouter >
+          <div>
+              <Route exact path="/" component={() => (
+                <Redirect to={{
+                  pathname: '/home',
+                  state: { from: this.props.location }
+                }}/>
+              )} />
+              <Route path="/home" component={FaceFarmLayout} />
+              <Route exact path="/login" component={Login} />
+              <Route exact path="/CreateAccount" component={CreateAccount} />
+          </div>
         </BrowserRouter>
       )
     );
   }
 }
-
+// <HomePage updateUserType={this.updateUserType}/>
+// <DefaultRouter  updateUserType={this.updateUserType} />
 export default AppRouter;
+
