@@ -9,16 +9,14 @@ import {
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
     let stringFFEncoded = localStorage.getItem('facefarm');
-    let isAuth = true;
+    let isAuth = false;
     if (stringFFEncoded) {
         let facefarm = JSON.parse(atob(stringFFEncoded));
         isAuth =  facefarm !== undefined && facefarm !== '' && facefarm !== null;
-        console.log('passei aqui')
     }
     return (
       <Route {...rest} render={props => (
         isAuth ? (
-          
           <Component {...props}/>
         ) : (
           <Redirect to={{

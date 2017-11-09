@@ -55,7 +55,7 @@ class AppRouter extends Component {
     return (
       (
         <BrowserRouter >
-          <div>
+          <Switch>
               <Route exact path="/" component={() => (
                 <Redirect to={{
                   pathname: '/home',
@@ -65,7 +65,8 @@ class AppRouter extends Component {
               <Route path="/home" component={FaceFarmLayout} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/CreateAccount" component={CreateAccount} />
-          </div>
+              <Route component={NotFound} />
+          </Switch>
         </BrowserRouter>
       )
     );
