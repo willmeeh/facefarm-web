@@ -6,19 +6,20 @@ import {
   Link
 } from 'react-router-dom';
 
-import About from '../components/screens/About';
-// import HomePage from '../components/screens/HomePage';
-import Logout from '../components/screens/Logout'
-import Currency from '../components/screens/users/Currency'
-import WeatherForecast from '../components/screens/users/WeatherForecast'
-import CommodityCurrency from '../components/screens/users/CommodityCurrency'
-import NotFound from '../components/screens/NotFound'
+import About from '../scenes/About/index';
+import NotFound from '../scenes/NotFound/index';
+
+import Currency from '../scenes/Home/scenes/Currency/index';
+import WeatherForecast from '../scenes/Home/scenes/Weather/index';
+import Commodities from '../scenes/Home/scenes/Commodities/index';
+
+import { requireAuthentication } from '../components/AuthenticatedComponent';
 
 export default [{ 
         path: '/home/weather',
         label: 'Previsão do tempo',
         icon: 'fa-sun-o',
-        component: WeatherForecast,
+        component: requireAuthentication(WeatherForecast),
         permissions: 'agricultor empresa'
     },{ 
         path: '/home/cotacoes',
@@ -28,24 +29,20 @@ export default [{
         permissions: 'agricultor empresa',
         routes: [
             { 
-                path: '/home/cotacoes/commodityCurrency',
-                label: 'Agrícola',
+                path: '/home/cotacoes/commodities',
+                label: 'Commodities',
                 icon: 'fa-leaf',
-                component: CommodityCurrency,
+                component: requireAuthentication(Commodities),
                 permissions: 'agricultor empresa'
             },
             { 
                 path: '/home/cotacoes/currency',
                 label: 'Monetária',
                 icon: 'fa-money',
-                component: Currency,
+                component: requireAuthentication(Currency),
                 permissions: 'agricultor empresa'
             }
         ]
-    },{ 
-        path: '/home/logout',
-        component: Logout,
-        permissions: 'agricultor empresa'
     },{ 
         path: '/home/about',
         component: About,

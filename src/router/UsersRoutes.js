@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import {
   Redirect,
   Route,
@@ -7,14 +7,13 @@ import {
   Link,
   withRouter
 } from 'react-router-dom';
-import RouterCreate from '../extended/RouterCreate';
-import PrivateRouter from '../extended/PrivateRouter';
+import {connect} from 'react-redux';
+
 import permissions from './Permissions'
 
-// variavel utilizada somente para ilustracao
-const currentUserPermission = 'agricultor';
-
 const RouteWithSubRoutes = (route) => {
+  if (route.permissions.search(route.userType) === -1)
+    return false;
 
   if (route.routes) {
     return (
@@ -28,19 +27,26 @@ const RouteWithSubRoutes = (route) => {
   } else {
     return (
       <Route path={route.path} render={props => (
-        // pass the sub-routes down to keep nesting
         <route.component {...props} routes={route.routes}/>
       )}/>
     )
   }
 }
 
-const UsersRoutes = () => (
-    <div>
-    {permissions.map((route, i) => (
-        <RouteWithSubRoutes key={i} {...route}/>
-      ))}
-    </div>
-);
+class UsersRoutes extends Component {
+  render() {
+    return (
+      <div>
+        {permissions.map((route, i) => (
+            <RouteWithSubRoutes key={i} {...route} userType={this.props.user && this.props.user.userType ? this.props.user.userType : false}/>
+        ))}
+      </div>
+    );
+  }
+}
 
-export default withRouter(UsersRoutes);
+const mapStateToProps = (state) => ({
+  user: state.session.user
+});
+
+export default withRouter(connect(mapStateToProps)(UsersRoutes));

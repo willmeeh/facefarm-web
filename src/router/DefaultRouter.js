@@ -4,18 +4,19 @@ import {
   Route,
   Switch
 } from 'react-router-dom';
-import RouterCreate from '../extended/RouterCreate';
-import Login from '../components/screens/Login';
-import CreateAccount from '../components/screens/CreateAccount'
+
+import Login from '../scenes/Login/index';
+import CreateAccount from '../scenes/CreateAccount/index';
+import About from '../scenes/About/index';
+import NotFound from '../scenes/NotFound/index';
 
 const DefaultRouter = (props) => {
   return (
     <div>
-      <Switch>
-        <Route exact path="/login" component={() => <Login updateUserType={props.updateUserType}  />} />
-        <Route exact path="/CreateAccount" component={CreateAccount} />
-        <Route component={() => <Redirect to="/login" />} />
-      </Switch>
+      <Route exact path="/login" component={Login} />
+      <Route exact path="/createAccount" component={CreateAccount} />
+      <Route exact path="/about" component={About} />
+      <Route component={NotFound} />
     </div>
   );
 }
