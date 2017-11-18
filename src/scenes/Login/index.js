@@ -5,7 +5,6 @@ import { Link, withRouter } from 'react-router-dom';
 
 import * as session from '../../services/session/api';
 import * as actionCreators from '../../services/session/actions';
-import ModalMessage from '../../components/ModalMessage';
 
 class Login extends Component {
 
@@ -28,7 +27,6 @@ class Login extends Component {
             let decoded = jwtDecode(jsonLogin.token);
             this.props.dispatch(actionCreators.loginUserSuccess(jsonLogin.token));
             this.props.history.push('/home');
-            this.props.dispatch({type: 'ADD_MESSAGE', cod: 'SUCCESS_SEGUINDO'});
         } catch (e) {
           this.setState({ modalTitulo: 'Erro!', modalConteudo: 'Erro ao fazer login, a chave obtida do servidor está inválida', showModal: true });
           this.state.e = true;
@@ -54,7 +52,6 @@ class Login extends Component {
     return (
 
       <div className="row login-background">
-        <ModalMessage showModal={this.state.showModal} titulo={this.state.modalTitulo} conteudo={this.state.modalConteudo} message={'teste'} />
 
         <div className="col-md-12">
           <div className="login-box">

@@ -8,15 +8,14 @@ import {
 import Login from '../scenes/Login/index';
 import CreateAccount from '../scenes/CreateAccount/index';
 import About from '../scenes/About/index';
-import NotFound from '../scenes/NotFound/index';
+
 
 const DefaultRouter = (props) => {
   return (
-    <div>
+    <div className="full-screen">
       <Route exact path="/login" component={Login} />
       <Route exact path="/createAccount" component={CreateAccount} />
       <Route exact path="/about" component={About} />
-      <Route component={NotFound} />
     </div>
   );
 }

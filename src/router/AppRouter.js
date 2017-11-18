@@ -14,13 +14,14 @@ import ModalMessage from 'components/ModalMessage';
 import { requireAuthentication } from '../components/AuthenticatedComponent';
 import DefaultRouter from './DefaultRouter';
 
-import FaceFarmLayout from '../scenes/Home/index';
+import FaceFarmLayout from 'scenes/Home/index';
+import NotFound from 'scenes/NotFound/index';
 
 class AppRouter extends Component {
   
   render() {
     return (
-      <div>
+      <div className="full-screen">
         <BrowserRouter >
           <Switch>
             <Route exact path="/" component={() => (
@@ -31,6 +32,7 @@ class AppRouter extends Component {
             )} />
             <Route path="/home" component={requireAuthentication(FaceFarmLayout)} />
             <DefaultRouter />
+            <Route component={NotFound} />
           </Switch>
         </BrowserRouter>
         {this.props.message.currentMessage && <ModalMessage message={this.props.message.currentMessage} />}

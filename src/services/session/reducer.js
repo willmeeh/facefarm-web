@@ -42,7 +42,6 @@ export default (state = sessionReducerDefaultState, action) => {
       const user = jwtDecode(action.token);
       sessionStorage.setItem('user', user);
       localStorage.setItem('facefarm', btoa(action.token));
-      console.log("teste")
       return {
         ...state,
         isAuthenticated: true,

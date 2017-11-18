@@ -49,11 +49,9 @@ const MontarMenuLeft = (route) => {
 
 class MenuLeft extends Component {
     shouldComponentUpdate(nextProps, nextState) {
-        // console.log('aaaaaaaaa funcionaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', nextProps, nextState)
         return false;
     }
     componentWillReceiveProps(nextProps) {
-        console.log('aaaaaaaaa funcionaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', nextProps)
         
     }
 

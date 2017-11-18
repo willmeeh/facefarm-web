@@ -18,8 +18,7 @@ class Currency extends Component {
     })
     .then((jsonCurrency) => {
       this.setState({ jsonCurrency: jsonCurrency });
-      this.props.dispatch({type: 'ADD_MESSAGE', cod: 'SUCCESS_SEGUINDO'});
-      console.log('jsonCurrency', jsonCurrency);
+      // this.props.dispatch({type: 'ADD_MESSAGE', cod: 'SUCCESS_SEGUINDO'});
     })
   }
 
@@ -37,7 +36,7 @@ class Currency extends Component {
         <p></p>
         <button type="button" onClick={this.handleLoadCurrency}>Load</button>
 
-        <p>{JSON.stringify(this.state.jsonCurrency) && console.log('passei por aqui stringi')}</p>
+        <p>{JSON.stringify(this.state.jsonCurrency)}</p>
 
       </div>
 

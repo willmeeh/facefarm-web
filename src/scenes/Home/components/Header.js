@@ -61,12 +61,12 @@ class Header extends Component {
                 </li>
                 <li className="dropdown user user-menu">
                   <a href="" className="dropdown-toggle" data-toggle="dropdown">
-                    <img src="../resources/images/user_image.png" className="user-image" alt="User Image" />
+                    <img src="/resources/images/user_image.png" className="user-image" alt="User Image" />
                     <span className="hidden-xs">Fulano de tal</span>
                   </a>
                   <ul className="dropdown-menu">
                     <li className="user-header">
-                      <img src="../resources/images/user_image.png" className="img-circle" alt="User Image" />
+                      <img src="/resources/images/user_image.png" className="img-circle" alt="User Image" />
 
                       <p>
                         Fulano de tal - Plantador de arroz

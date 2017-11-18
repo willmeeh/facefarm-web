@@ -35,8 +35,6 @@ export const fetchApi = (endPoint, payload = {}, method = 'get', pHeaders = {}) 
 
     const request = new Request(`${apiConfig.url}${endPoint}`, params);
 
-    console.log('request', request)
-
     return fetch(request)
         .then((response) => {
             return response.json();
