@@ -15,16 +15,48 @@ import * as sessionSelectors from '../session/selectors';
 // 	return error;
 // };
 
-// export const fetchApi = (endPoint, payload = {}, method = 'get', headers = {}) => {
+export const fetchApi = (endPoint, payload = {}, method = 'get', pHeaders = {}) => {
+    
+    let headers = new Headers(pHeaders);
 
-//     const accessToken = sessionSelectors.get().tokens;
+    const accessToken = sessionSelectors.get().token;
+    
+    if (accessToken) {
+        headers.append("x-auth", accessToken);
+    }
 
-//     return fetch(`${apiConfig.url}${endPoint}`, {
-//         method: method.toLowerCase(),
-//         headers: _.pickBy({
-// 			...(accessToken && {"x-auth": `${accessToken}`}),
-// 			...headers,
-// 		}, item => !_.isEmpty(item)),
-//         body: (payload)
-//     });
-// }
+    let params = {
+        method: method.toLowerCase(),
+        headers: headers,
+    };
+
+    if (payload)
+        params.body = JSON.stringify(payload)
+
+    const request = new Request(`${apiConfig.url}${endPoint}`, params);
+
+    console.log('request', request)
+
+    return fetch(request)
+        .then((response) => {
+            return response.json();
+        })
+        .catch((error) => {
+            return error;
+        });
+
+
+    // return fetch(`${apiConfig.url}${endPoint}`, {
+    //     method: method.toLowerCase(),
+    //     headers: JSON.stringify({
+    // 		...(accessToken && {"x-auth": `${accessToken}`}),
+    // 		...headers,
+    // 	}),
+    //     body: JSON.stringify(payload)
+    // }).then((response) => {
+    // 	return response.json();
+    // })
+    // .catch((error) => {
+    // 	return error;
+    // });
+}

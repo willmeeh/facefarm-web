@@ -12,9 +12,15 @@ class Currency extends Component {
   };
 
   handleLoadCurrency = () => {
-    api.get({base: this.state.base}).then((jsonCurrency) => {
+    
+    api.getCurrency({
+      base: this.state.base ? this.state.base : 'BRL'
+    })
+    .then((jsonCurrency) => {
       this.setState({ jsonCurrency: jsonCurrency });
-    });
+      this.props.dispatch({type: 'ADD_MESSAGE', cod: 'SUCCESS_SEGUINDO'});
+      console.log('jsonCurrency', jsonCurrency);
+    })
   }
 
   handleChangeBase = (event) => {
@@ -31,7 +37,7 @@ class Currency extends Component {
         <p></p>
         <button type="button" onClick={this.handleLoadCurrency}>Load</button>
 
-        <p>{JSON.stringify(this.state.jsonCurrency)}</p>
+        <p>{JSON.stringify(this.state.jsonCurrency) && console.log('passei por aqui stringi')}</p>
 
       </div>
 

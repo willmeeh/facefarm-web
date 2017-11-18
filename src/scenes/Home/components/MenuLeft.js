@@ -16,6 +16,8 @@ const MontarMenuLeft = (route) => {
         return false;
     }
 
+    console.log('MontarMenuLeft');
+
     if (route.routes && route.label) {
         return (
             <li className="treeview">
@@ -46,6 +48,15 @@ const MontarMenuLeft = (route) => {
   };
 
 class MenuLeft extends Component {
+    shouldComponentUpdate(nextProps, nextState) {
+        // console.log('aaaaaaaaa funcionaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', nextProps, nextState)
+        return false;
+    }
+    componentWillReceiveProps(nextProps) {
+        console.log('aaaaaaaaa funcionaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', nextProps)
+        
+    }
+
   render() {
     return (
       <div>
@@ -59,8 +70,14 @@ class MenuLeft extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-    user: state.session.user
-});
+const mapStateToProps = (state, teste) => {
+    return {
+        user: state.session.user
+    }
+};
 
-export default withRouter(connect(mapStateToProps)(MenuLeft));
+export default withRouter(connect(mapStateToProps,null,
+    null,
+    {
+     shouldComponentUpdate: false
+    })(MenuLeft));

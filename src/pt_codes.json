@@ -1,0 +1,97 @@
+{
+    "SUCCESS_SEGUINDO": {
+        "TYPE": "SUCCESS",
+        "COD": "SUCCESS_SEGUINDO",
+        "MSG": "Usuário seguido com sucesso."
+    },
+    "ERROR_ID_INVALIDO": {
+        "TYPE": "ERROR",
+        "COD": "ERROR_ID_INVALIDO",
+        "MSG": "Id não é válido."
+    },
+    "ERROR_CONEXAO_GOOGLE": {
+        "TYPE": "ERROR",
+        "COD": "ERROR_CONEXAO_GOOGLE",
+        "MSG": "Não foi possivel pegar a localização no serviço do Google."
+    },
+    "ERROR_ENDERECO_INVALIDO": {
+        "TYPE": "ERROR",
+        "COD": "ERROR_ENDERECO_INVALIDO",
+        "MSG": "Não foi possivel encontrar o endereço."
+    },
+    "ERROR_CONNECT_FORECAST": {
+        "TYPE": "ERROR",
+        "COD": "ERROR_CONNECT_FORECAST",
+        "MSG": "Não foi possivel comunicar com o serviço de clima."
+    },
+    "INFO_NAO_POSSUI_SEGUIDORES": {
+        "TYPE": "INFO",
+        "COD": "INFO_NAO_POSSUI_SEGUIDORES",
+        "MSG": "O usuário não possui nenhum seguidor."
+    },
+    "ERROR_OBTER_SEGUIDORES": {
+        "TYPE": "ERROR",
+        "COD": "ERROR_OBTER_SEGUIDORES",
+        "MSG": "Erro ao tentar obter seguidores."
+    },
+    "ERROR_OBTER_LISTA_SEGUINDO": {
+        "TYPE": "ERROR",
+        "COD": "ERROR_OBTER_LISTA_SEGUINDO",
+        "MSG": "Erro ao tentar obter a lista de seguidores."
+    },
+    "INFO_NAO_ESTA_SEGUINDO_NINGUEM": {
+        "TYPE": "INFO",
+        "COD": "INFO_NAO_ESTA_SEGUINDO_NINGUEM",
+        "MSG": "O usuário não está seguindo ninguem."
+    },
+    "ERROR_SEGUIR": {
+        "TYPE": "INFO",
+        "COD": "ERROR_SEGUIR",
+        "MSG": "Ocorreu algum erro ao tentar seguir"
+    },
+    "ERROR_ADICIONAR_SEGUIDORES": {
+        "TYPE": "INFO",
+        "COD": "ERROR_ADICIONAR_SEGUIDORES",
+        "MSG": "Ocorreu algum erro ao tentar adicionar seguidor"
+    },
+    "INFO_USUARIO_NAO_ENCONTRADO": {
+        "TYPE": "INFO",
+        "COD": "INFO_USUARIO_NAO_ENCONTRADO",
+        "MSG": "Nenhum usuario foi encontrado para o ID especificado"
+    },
+    "ERROR_PROCURAR_USUARIO": {
+        "TYPE": "INFO",
+        "COD": "ERROR_PROCURAR_USUARIO",
+        "MSG": "Ocorreu um erro ao tentar encontrar este usuario!"
+    },
+    "INFO_USUARIO_NAO_AUTORIZADO": {
+        "TYPE": "INFO",
+        "COD": "INFO_USUARIO_NAO_AUTORIZADO",
+        "MSG": "Você não está autorizado a acessar esta rota"
+    },
+    "INFO_CREDENCIAIS_INCORRETAS": {
+        "TYPE": "INFO",
+        "COD": "INFO_INCORRECT_CREDENTIALS",
+        "MSG": "E-mail ou senha incorretos!"
+    },
+    "SUCCESS_UNFOLLOW": {
+        "TYPE": "SUCCESS",
+        "COD": "SUCCESS_UNFOLLOW",
+        "MSG": "Usuario deixado de ser seguido com sucesso"
+    },
+    "ERROR_UNFOLLOW": {
+        "TYPE": "INFO",
+        "COD": "ERROR_UNFOLLOW",
+        "MSG": "Ocorreu algum erro ao deixar de seguir"
+    },
+    "ERROR_CONNECT_FIXER": {
+        "TYPE": "ERROR",
+        "COD": "ERROR_CONNECT_FIXER",
+        "MSG": "Não foi possivel conectar ao serviço de cotação."
+    },
+    "ERROR_POSTAGEM_NOT_EXIST": {
+        "TYPE": "ERROR",
+        "COD": "ERROR_POSTAGEM_NOT_EXIST",
+        "MSG": "Não foi possivel encontrar uma postagem com esse id."
+    }
+}

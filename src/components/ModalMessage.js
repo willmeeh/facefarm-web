@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import { connect } from 'react-redux'
 import {
   Popover,
   Tooltip,
@@ -8,19 +8,17 @@ import {
   OverlayTrigger
 } from 'react-bootstrap';
 
-class modalMessage extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { showModal: false, titulo: '', coteudo: '' };
-  }
+class ModalMessage extends Component {
+
+  state = { showModal: true};
 
   handleClose = (e) => {
     e.preventDefault();
     this.setState({ showModal: false });
   }
 
-  componentWillReceiveProps(newProps) {
-    this.setState({ titulo: newProps.titulo, coteudo: newProps.conteudo, showModal: newProps.showModal });
+  componentDidMount() {
+    // setTimeout(() => {this.props.dispatch({type: 'REMOVE_MESSAGE'})}, 3500);
   }
 
   render() {
@@ -28,10 +26,10 @@ class modalMessage extends Component {
       <div>
         <Modal show={this.state.showModal} onHide={this.handleClose}>
           <Modal.Header closeButton>
-            <Modal.Title>{this.state.titulo}</Modal.Title>
+            <Modal.Title>{this.props.message.title}</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            {this.state.coteudo}
+            {this.props.message.MSG}
           </Modal.Body>
           <Modal.Footer>
             <Button onClick={this.handleClose}>Fechar</Button>
@@ -42,4 +40,4 @@ class modalMessage extends Component {
   }
 };
 
-export default modalMessage;
+export default connect()(ModalMessage);

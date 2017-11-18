@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 
@@ -15,10 +15,14 @@ const state = store.getState();
 store.dispatch(initApplication());
 window.store = store;
 
-const pageController = (
-  <Provider store={store}>
-    <AppRouter />
-  </Provider>
-);
+class App extends Component {
+  render() {
+    return (
+      <Provider store={store}>
+        <AppRouter />
+      </Provider>
+    );
+  }
+}
 
-ReactDOM.render(pageController, document.getElementById('root'));
+ReactDOM.render(<App />, document.getElementById('root'));

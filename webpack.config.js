@@ -1,6 +1,6 @@
 const path = require('path');
 
-console.log(path.join(__dirname, 'public'));
+console.log('root dir: ', path.join(__dirname, 'public'));
 
 module.exports = {
     entry: './src/app.js',
@@ -32,5 +32,8 @@ module.exports = {
     devServer: {
         contentBase: path.join(__dirname, 'public'),
         historyApiFallback: true
-    }
+    },
+    resolve: {
+        modules: [path.resolve(__dirname, "src"), "node_modules"]
+    },
 };

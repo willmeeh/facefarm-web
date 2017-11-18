@@ -8,6 +8,8 @@ import {
   Redirect,
   browserHistory
 } from 'react-router-dom';
+import { connect } from 'react-redux'
+import ModalMessage from 'components/ModalMessage';
 
 import { requireAuthentication } from '../components/AuthenticatedComponent';
 import DefaultRouter from './DefaultRouter';
@@ -15,10 +17,10 @@ import DefaultRouter from './DefaultRouter';
 import FaceFarmLayout from '../scenes/Home/index';
 
 class AppRouter extends Component {
-
+  
   render() {
     return (
-      (
+      <div>
         <BrowserRouter >
           <Switch>
             <Route exact path="/" component={() => (
@@ -31,9 +33,15 @@ class AppRouter extends Component {
             <DefaultRouter />
           </Switch>
         </BrowserRouter>
-      )
+        {this.props.message.currentMessage && <ModalMessage message={this.props.message.currentMessage} />}
+      </div>
     );
   }
 }
-export default AppRouter;
+
+const mapStateToProps = (state) => ({
+  message: state.message
+});
+
+export default connect(mapStateToProps)(AppRouter);
 
