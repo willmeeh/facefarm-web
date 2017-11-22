@@ -7,28 +7,27 @@ import {
   Link,
   withRouter
 } from 'react-router-dom';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 
 import permissions from './Permissions'
 
-const RouteWithSubRoutes = (route) => {
-  if (route.permissions.search(route.userType) === -1)
+const RouteWithSubRoutes = (props) => {
+  if (!props.userType || props.permissions.search(props.userType) === -1)
     return false;
 
-  if (route.routes) {
+  if (props.routes) {
     return (
       <div>
-        {route.routes.map((route, i) => (
-          <RouteWithSubRoutes key={i} {...route}/>
+        {props.routes.map((route, i) => (
+          <RouteWithSubRoutes key={i} {...route} userType={props.userType} />
         ))}
       </div>
-
     )
   } else {
     return (
-      <Route path={route.path} render={props => (
-        <route.component {...props} routes={route.routes}/>
-      )}/>
+      <Route path={props.path} render={childProps => (
+        <props.component {...childProps} routes={props.routes} />
+      )} />
     )
   }
 }
@@ -38,7 +37,7 @@ class UsersRoutes extends Component {
     return (
       <div>
         {permissions.map((route, i) => (
-            <RouteWithSubRoutes key={i} {...route} userType={this.props.user && this.props.user.userType ? this.props.user.userType : false}/>
+          <RouteWithSubRoutes key={i} {...route} userType={this.props.user && this.props.user.userType} />
         ))}
       </div>
     );
@@ -49,4 +48,4 @@ const mapStateToProps = (state) => ({
   user: state.session.user
 });
 
-export default withRouter(connect(mapStateToProps)(UsersRoutes));
+export default UsersRoutes;

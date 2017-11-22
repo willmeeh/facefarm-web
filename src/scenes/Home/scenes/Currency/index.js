@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux'
 
-import * as api from './services/api';
+import * as currencyApi from './api';
 
 class Currency extends Component {
   
@@ -12,14 +12,11 @@ class Currency extends Component {
   };
 
   handleLoadCurrency = () => {
-    
-    api.getCurrency({
+    currencyApi.getCurrency({
       base: this.state.base ? this.state.base : 'BRL'
-    })
-    .then((jsonCurrency) => {
+    }).then((jsonCurrency) => {
       this.setState({ jsonCurrency: jsonCurrency });
-      // this.props.dispatch({type: 'ADD_MESSAGE', cod: 'SUCCESS_SEGUINDO'});
-    })
+    });
   }
 
   handleChangeBase = (event) => {
@@ -44,4 +41,4 @@ class Currency extends Component {
   }
 }
 
-export default withRouter(connect()(Currency));
+export default withRouter(Currency);

@@ -1,0 +1,12 @@
+{
+    "ERROR_TOKEN_INVALIDO": {
+        "TYPE": "ERROR",
+        "COD": "ERROR_TOKEN_INVALIDO",
+        "MSG": "Token inválido."
+    },
+    "ERROR_DEFAULT": {
+        "TYPE": "ERROR",
+        "COD": "ERROR_DEFAULT",
+        "MSG": "Oops! Algo deu errado!\nAjude-nos a melhorar sua experiência enviando um relatório de erro."
+    }
+}

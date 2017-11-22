@@ -4,15 +4,8 @@ const endPoints = {
 	getCurrency: '/currency',
 };
 
-
 export const getCurrency = (base = {base: 'BRL'}) => {
-	return fetchApi(endPoints.getCurrency, base, 'post', { "Content-Type": "application/json" })
-	.then((response) => {
-		return response;
-	})
-	.catch((error) => {
-		console.log('error', error)
-	});
+	return fetchApi(endPoints.getCurrency, base, 'post', { "Content-Type": "application/json" });
 };
 
 

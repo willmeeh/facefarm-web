@@ -5,13 +5,7 @@ const endPoints = {
 };
 
 export const authenticate = (credentials) => {
-	return fetchApi(endPoints.authUser, credentials, 'post', { "Content-Type": "application/json" })
-	.then((response) => {
-		return response;
-	})
-	.catch((error) => {
-		console.log('error', error)
-	});
+	return fetchApi(endPoints.authUser, credentials, 'post', { "Content-Type": "application/json" });
 };
 
 // export const authenticate = (credentials) => {

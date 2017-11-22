@@ -1,6 +1,6 @@
 import { createStore, combineReducers } from 'redux';
 import sessionReducer from './session/reducer';
-import messageReducer from './message/reducer';
+import messageReducer from 'scenes/MessageLog/reducer';
 
 export default () => {
   const store = createStore(

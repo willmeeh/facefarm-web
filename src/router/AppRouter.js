@@ -9,16 +9,16 @@ import {
   browserHistory
 } from 'react-router-dom';
 import { connect } from 'react-redux'
-import ModalMessage from 'components/ModalMessage';
 
-import { requireAuthentication } from '../components/AuthenticatedComponent';
+import { requireAuthentication } from 'components/AuthenticatedComponent/index';
 import DefaultRouter from './DefaultRouter';
 
 import FaceFarmLayout from 'scenes/Home/index';
 import NotFound from 'scenes/NotFound/index';
+import MessageLog from 'scenes/MessageLog/index';
 
 class AppRouter extends Component {
-  
+
   render() {
     return (
       <div className="full-screen">
@@ -28,22 +28,17 @@ class AppRouter extends Component {
               <Redirect to={{
                 pathname: '/home',
                 state: { from: this.props.location }
-              }}/>
+              }} />
             )} />
             <Route path="/home" component={requireAuthentication(FaceFarmLayout)} />
             <DefaultRouter />
             <Route component={NotFound} />
           </Switch>
         </BrowserRouter>
-        {this.props.message.currentMessage && <ModalMessage message={this.props.message.currentMessage} />}
+        <MessageLog />
       </div>
     );
   }
 }
-
-const mapStateToProps = (state) => ({
-  message: state.message
-});
-
-export default connect(mapStateToProps)(AppRouter);
+export default connect()(AppRouter);
 

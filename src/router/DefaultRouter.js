@@ -5,9 +5,9 @@ import {
   Switch
 } from 'react-router-dom';
 
-import Login from '../scenes/Login/index';
-import CreateAccount from '../scenes/CreateAccount/index';
-import About from '../scenes/About/index';
+import Login from 'scenes/Sign/scenes/Login/index';
+import CreateAccount from 'scenes/Sign/scenes/CreateAccount/index';
+import About from 'scenes/About/index';
 
 
 const DefaultRouter = (props) => {
