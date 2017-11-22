@@ -12,7 +12,7 @@ class Home extends Component {
   render() {
     return (
       <div className="wrapper auto-height">
-          <Header />
+          <Header user={this.props.user} />
           <aside className="main-sidebar">
             <section className="sidebar auto-height">
               <MenuLeft user={this.props.user} />
