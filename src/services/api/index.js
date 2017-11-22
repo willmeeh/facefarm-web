@@ -4,20 +4,28 @@ import apiConfig from './config';
 import * as sessionSelectors from '../session/selectors';
 
 export const handleErrors = (response) => {
-    if (!response.ok || response.status !== 200) {
-        response.json().then((response) => {
-            if (response && response.cod) {
-                store.dispatch({ type: 'ADD_MESSAGE', cod: response.cod })
-            } else {
+
+    return new Promise((resolve, reject) => {
+        if (response.ok && response.status === 200) {
+            response.json().then((response) => {
+                console.log(response, response.cod)
+                if (response && response.cod) {
+                    store.dispatch({ type: 'ADD_MESSAGE', cod: response.cod })
+                }
+                resolve(response);
+            }).catch((e) => {
                 store.dispatch({ type: 'ADD_MESSAGE', cod: 'ERROR_DEFAULT' })
-            }
-        }).catch(() => {
-            store.dispatch({ type: 'ADD_MESSAGE', cod: 'ERROR_DEFAULT' })
-        })
-        throw new Error(response.statusText);
-    } else {
-        return response;
-    }
+                reject(e);
+            })
+        } else {
+            response.json().then((response) => {
+                store.dispatch({ type: 'ADD_MESSAGE', cod: response.cod })
+                resolve(response);
+            }).catch((e) => {
+                reject(e);
+            })
+        }
+    })
 }
 
 export const fetchApi = (endPoint, payload = {}, method = 'get', pHeaders = {}) => {
@@ -40,10 +48,5 @@ export const fetchApi = (endPoint, payload = {}, method = 'get', pHeaders = {}) 
 
     const request = new Request(`${apiConfig.url}${endPoint}`, params);
 
-    return fetch(request)
-        .then(handleErrors)
-        .then((response) => response.json())
-        .catch((error) => {
-            console.log(error);
-        });
+    return fetch(request).then(handleErrors);
 }

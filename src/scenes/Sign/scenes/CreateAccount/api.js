@@ -1,14 +1,7 @@
-export const get = (defaultCurrency) => {
-    return fetch('http://localhost:4000/agricultor/', {
-        method: "POST",
-        headers: new Headers({
-            "Content-Type": "application/json"
-        }),
-        body: JSON.stringify(newAgricultor)
+import { fetchApi } from 'services/api';
 
-    }).then(response => {
-        return response.json();
-    }).catch(error => {
-        return error;
-    });
+const endPoint = {agricultor: '/agricultor'};
+
+export const create = (payload) => {
+    return fetchApi(endPoint.agricultor, payload, 'post', {"Content-Type": "application/json"});
 }

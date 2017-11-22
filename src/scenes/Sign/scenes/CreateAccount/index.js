@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-import * as api from 'services/api';
+import * as api from './api'
 
 class CreateAccount extends Component {
 
@@ -14,8 +14,16 @@ class CreateAccount extends Component {
 
   handleRegister = (e) => {
     e.preventDefault();
-    alert('não implementado')
-    api.create(this.state);
+    api.create(this.state).then((r) => {
+
+ 
+
+
+      console.log("R:", r);
+    }).catch((e) => {
+      console.log("E:", e);
+      
+    });
   }
 
   handleChangeNomeCompleto = (event) => {
