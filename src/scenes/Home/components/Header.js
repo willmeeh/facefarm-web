@@ -62,7 +62,9 @@ class Header extends Component {
                 <li className="dropdown user user-menu">
                   <a href="" className="dropdown-toggle" data-toggle="dropdown">
                     <img src="/resources/images/user_image.png" className="user-image" alt="User Image" />
-                    <span className="hidden-xs">Fulano de tal</span>
+                    <span className="hidden-xs">
+                      {this.props.user && this.props.user.nomeCompleto}
+                    </span>
                   </a>
                   <ul className="dropdown-menu">
                     <li className="user-header">
@@ -70,7 +72,7 @@ class Header extends Component {
 
                       <p>
                         Fulano de tal - Plantador de arroz
-                                                <small>Membro desde 2017</small>
+                        <small>Membro desde 2017</small>
                       </p>
                     </li>
                     <li className="user-body">
@@ -102,8 +104,6 @@ class Header extends Component {
 
           </nav>
         </aside>
-
-        
       </div>
     );
   }
