@@ -15,3 +15,75 @@ html, body, #root, #root>div {
     height: 100vh;
     width: 100vw;
 }
+
+.mtop-5  { margin-top: 5px !important; }
+.mtop-3  { margin-top: 3px !important; }
+.mtop-7  { margin-top: 7px !important; }
+.mtop-10 { margin-top: 10px !important; }
+.mtop-15 { margin-top: 15px !important; }
+.mtop-20 { margin-top: 20px !important; }
+.mtop-25 { margin-top: 25px !important; }
+.mtop-30 { margin-top: 30px !important; }
+
+.mtop-less-5  { margin-top: -5px !important; }
+.mtop-less-10 { margin-top: -10px !important; }
+.mtop-less-15 { margin-top: -15px !important; }
+.mtop-less-17 { margin-top: -17px !important; }
+.mtop-less-20 { margin-top: -20px !important; }
+.mtop-less-30 { margin-top: -30px !important; }
+
+
+.mbottom-5  { margin-bottom: 5px !important; }
+.mbottom-8  { margin-bottom: 8px !important; }
+.mbottom-10 { margin-bottom: 10px !important; }
+.mbottom-15 { margin-bottom: 15px !important; }
+.mbottom-20 { margin-bottom: 20px !important; }
+
+.mleft-5 { margin-left: 5px !important; }
+.mleft-10 { margin-left: 10px !important; }
+.mleft-15 { margin-left: 15px !important; }
+.mleft-20 { margin-left: 20px !important; }
+.mleft-25 { margin-left: 25px !important; }
+.mleft-30 { margin-left: 30px !important; }
+.mleft-35 { margin-left: 35px !important; }
+.mleft-40 { margin-left: 40px !important; }
+.mleft-114 { margin-left: -114px !important}
+
+.mleft-less-5 { margin-left: -5px !important; }
+.mleft-less-10 { margin-left: -10px !important; }
+
+.mright-5 { margin-right: 5px !important; }
+.mright-10 { margin-right: 10px !important; }
+.mright-15 { margin-right: 15px !important; }
+.mright-20 { margin-right: 20px !important; }
+.mright-25 { margin-right: 25px !important; }
+.mright-30 { margin-right: 30px !important; }
+
+.text-center {
+    text-align: center;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.f-size-5vw {
+    font-size: 5vw;
+}
+
+.min-height-500 {
+    min-height: 500px;
+}
+
+.display-none {
+    display: none !important;
+}
+
+
+.f-size-1-5-em {
+    font-size: 1.5em;
+}

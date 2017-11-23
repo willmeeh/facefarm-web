@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { withRouter, Link } from 'react-router-dom';
 
-import { resetApplication } from '../../../services/session/actions';
-
 class Header extends Component {
 
   handleLogout = () => {
@@ -90,7 +88,9 @@ class Header extends Component {
                     </li>
                     <li className="user-footer">
                       <div className="pull-left">
-                        <a href="#profile" className="btn btn-default btn-flat">Perfil</a>
+                        <Link to="/home/profile" className="btn btn-default btn-flat">
+                          Perfil
+                        </Link>
                       </div>
                       <div className="pull-right">
                         <button className="btn btn-default btn-flat" onClick={this.handleLogout}>Sair</button>

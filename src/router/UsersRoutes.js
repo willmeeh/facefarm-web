@@ -25,7 +25,7 @@ const RouteWithSubRoutes = (props) => {
     )
   } else {
     return (
-      <Route path={props.path} render={childProps => (
+      <Route path={props.path} exact={props.exact && props.exact} render={childProps => (
         <props.component {...childProps} routes={props.routes} />
       )} />
     )

@@ -7,7 +7,6 @@ import {
 	BrowserRouter,
 	Link
 } from 'react-router-dom';
-import { connect } from 'react-redux';
 import permissions from 'router/Permissions';
 
 const MontarMenuLeft = (props) => {

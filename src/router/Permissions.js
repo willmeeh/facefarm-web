@@ -12,10 +12,17 @@ import NotFound from 'scenes/NotFound/index';
 import Currency from 'scenes/Home/scenes/Currency/index';
 import WeatherForecast from 'scenes/Home/scenes/Weather/index';
 import Commodities from 'scenes/Home/scenes/Commodities/index';
+import Profile from 'scenes/Home/scenes/Profile/index';
+import TimeLine from 'scenes/Home/scenes/TimeLine/index';
 
 import { requireAuthentication } from 'components/AuthenticatedComponent/index';
 
 export default [{
+	path: '/home',
+	component: requireAuthentication(TimeLine),
+	permissions: 'agricultor empresa',
+	exact: true
+}, {
 	path: '/home/weather',
 	label: 'Previsão do tempo',
 	icon: 'fa-sun-o',
@@ -46,6 +53,10 @@ export default [{
 }, {
 	path: '/home/about',
 	component: About,
+	permissions: 'agricultor empresa'
+}, {
+	path: '/home/profile',
+	component: Profile,
 	permissions: 'agricultor empresa'
 }
 ];
