@@ -20,7 +20,7 @@ export const handleErrors = (response) => {
         } else {
             response.json().then((response) => {
                 store.dispatch({ type: 'ADD_MESSAGE', cod: response.cod })
-                resolve(response);
+                reject(response);
             }).catch((e) => {
                 reject(e);
             })

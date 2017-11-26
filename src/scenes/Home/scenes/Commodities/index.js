@@ -8,7 +8,14 @@ class Commodities extends Component {
     return (
       <div>
         <h1>Commodities</h1>
+
+        <div>
+          <object type="text/html" data="https://www.agrolink.com.br/cotacoes/" width="700px" height="600px">
+          </object>
+        </div>
       </div>
+
+
 
     );
   }

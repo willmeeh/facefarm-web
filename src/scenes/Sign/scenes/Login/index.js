@@ -29,7 +29,7 @@ class Login extends Component {
             console.log('Erro ao fazer login!');
           }
         } catch (e) {
-          store.dispatch({ type: 'ADD_MESSAGE', cod: 'ERROR_TOKEN_INVALIDO' })
+          this.props.dispatch({ type: 'ADD_MESSAGE', cod: 'ERROR_TOKEN_INVALIDO' })
         }
       });
   }
