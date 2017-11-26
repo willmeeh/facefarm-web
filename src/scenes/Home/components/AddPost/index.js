@@ -20,32 +20,29 @@ class AddPost extends Component {
 		this.setState({
 			collapse: !this.state.collapse
 		});
+		console.log('addPost', this.state)
 	}
 	handleChangeTipo = (event) => { this.setState({ tipo: event.target.value }) };
-
 	handleChangeTexto = (event) => { this.setState({ texto: event.target.value }); }
-	handleChangePreco = (event) => { this.setState({ preco: event.target.preco }); }
-	handleChangeQuantidadeTotal = (event) => { this.setState({ quantidadeTotal: event.target.quantidadeTotal }); }
-	handleChangeQuantidadeMedida = (event) => { this.setState({ quantidadeMedida: event.target.quantidadeMedida }); }
-	handleChangeUnidadeMedida = (event) => { this.setState({ unidadeMedida: event.target.unidadeMedida }); }
+	handleChangePreco = (event) => { this.setState({ preco: event.target.value }); }
+	handleChangeQuantidadeTotal = (event) => { this.setState({ quantidadeTotal: event.target.value }); }
+	handleChangeQuantidadeMedida = (event) => { this.setState({ quantidadeMedida: event.target.value }); }
+	handleChangeUnidadeMedida = (event) => { this.setState({ unidadeMedida: event.target.value }); }
 
 	handlePublicar = () => {
-		let obj = {
-			...this.state,
-			idUsuario: sessionSelectors.getLoggedUserId()
-		}
-		console.log(obj)
-
 		addPostApi.create({
 			...this.state,
 			idUsuario: sessionSelectors.getLoggedUserId()
 		}).then((r) => {
+			if (this.props.refreshTimeLine) {
+				this.props.refreshTimeLine();
+			}
 			console.log(r);
 		})
 	}
 
 	componentDidMount() {
-		if (this.props.boxCollapseState !== undefined && !this.props.boxCollapseState ) {
+		if (this.props.boxCollapseState !== undefined && !this.props.boxCollapseState) {
 			this.setState({ collapse: false });
 		}
 	}
@@ -185,7 +182,7 @@ class AddPost extends Component {
 							<button
 								className="btn btn-success pull-right"
 								onClick={this.handlePublicar}
-								disabled={ (this.state.tipo === 'publicacao' && !this.state.texto ? true : false) }
+								disabled={(this.state.tipo === 'publicacao' && !this.state.texto ? true : false)}
 							>
 								Publicar
 							</button>

@@ -8,6 +8,11 @@ import AddPost from 'scenes/Home/components/AddPost/index';
 import Posts from 'scenes/Home/components/Posts/index';
 
 class Profile extends Component {
+
+	refreshTimeLine = () => {
+		this.forceUpdate();
+	}
+
 	render() {
 		return (
 			<div className="row">
@@ -83,8 +88,8 @@ class Profile extends Component {
 					</div>
 				</div>
 				<div className="col-md-9">
-					<AddPost />
-					<Posts usersIds={{ usersIds: [this.props.session.user._id] }} />
+					<AddPost refreshTimeLine={this.refreshTimeLine} />
+					<Posts usersIds={{ usersIds: [this.props.session.user._id] }} refreshTimeLine={this.refreshTimeLine} />
 				</div>
 			</div>
 		);

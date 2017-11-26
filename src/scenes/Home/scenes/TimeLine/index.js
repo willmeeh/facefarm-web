@@ -7,17 +7,21 @@ import Posts from 'scenes/Home/components/Posts/index';
 
 class TimeLine extends Component {
 
+  refreshTimeLine = () => {
+    this.forceUpdate();
+  }
+
   render() {
     return (
       <div>
-        <AddPost />
-        <Posts usersIds={ {usersIds: [this.props.session.user._id]} } />
+        <AddPost refreshTimeLine={this.refreshTimeLine} />
+        <Posts usersIds={ {usersIds: [this.props.session.user._id]} } refreshTimeLine={this.refreshTimeLine} />
       </div>
 
     );
   }
 }
-const mapStateToProps = (state, teste) => {
+const mapStateToProps = (state) => {
   return {
     session: state.session
   }

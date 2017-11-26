@@ -10,8 +10,7 @@ class Posts extends Component {
         posts: []
     }
 
-    componentDidMount(teste) {
-        console.log('teste', teste)
+    componentDidMount() {
         console.log('this.props', this.props)
         
         postsApi.getPosts(this.props.usersIds).then((r) => {
@@ -24,11 +23,25 @@ class Posts extends Component {
         })
     }
 
+    
+    componentWillReceiveProps(newProps) {
+        postsApi.getPosts(newProps.usersIds).then((r) => {
+            console.log('then', r)
+            this.setState({
+                posts: r.posts
+            })
+        }).catch((e) => {
+            console.log('catch', e)
+        })
+    }
+
     render() {
         return (
             <div>
-                {this.state.posts.map((post) => {
-                    return <Post key={post._id} {...post} /> ;
+                
+                {this.state.posts && this.state.posts.map((post) => {
+                    {console.log('Posts props', this.props.refreshTimeLine)}
+                    return <Post key={post._id} {...post} refreshTimeLine={this.props.refreshTimeLine} /> ;
                 })}
             </div>
         );
