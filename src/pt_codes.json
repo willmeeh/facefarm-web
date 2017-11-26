@@ -93,5 +93,15 @@
         "TYPE": "ERROR",
         "COD": "ERROR_POSTAGEM_NOT_EXIST",
         "MSG": "Não foi possivel encontrar uma postagem com esse id."
+    },
+    "ERROR_LISTAR_POSTAGENS": {
+        "TYPE": "ERROR",
+        "COD": "ERROR_LISTAR_POSTAGENS",
+        "MSG": "Não foi possivel encontrar postagens."
+    },
+    "ERROR_LISTAR_POSTAGENS_IDS_NULL": {
+        "TYPE": "ERROR",
+        "COD": "ERROR_LISTAR_POSTAGENS_IDS_NULL",
+        "MSG": "Não foi informado nenhum usuário ao tentar listar as postagens."
     }
 }

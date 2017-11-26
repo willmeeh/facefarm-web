@@ -17,6 +17,7 @@
     "file-loader": "^1.1.5",
     "jwt-decode": "^2.2.0",
     "live-server": "^1.2.0",
+    "moment": "^2.19.2",
     "node-sass": "^4.5.3",
     "normalize.css": "^7.0.0",
     "react": "^16.0.0",

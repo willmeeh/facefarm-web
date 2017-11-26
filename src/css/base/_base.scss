@@ -5,6 +5,12 @@ html {
 
 html, body, #root, #root>div {
     height: 100vh !important;
+    overflow: hidden;
+}
+
+.content {
+    max-height: 90vh;
+    overflow: auto;
 }
 
 .auto-height {
@@ -47,8 +53,8 @@ html, body, #root, #root>div {
 .mleft-30 { margin-left: 30px !important; }
 .mleft-35 { margin-left: 35px !important; }
 .mleft-40 { margin-left: 40px !important; }
-.mleft-114 { margin-left: -114px !important}
 
+.mleft-less-114 { margin-left: -114px !important}
 .mleft-less-5 { margin-left: -5px !important; }
 .mleft-less-10 { margin-left: -10px !important; }
 
@@ -79,11 +85,33 @@ html, body, #root, #root>div {
     min-height: 500px;
 }
 
+.min-width-80-por-cento {
+    min-width: 80%;
+}
+.width-80-por-cento {
+    width: 80%;
+}
+.width-50 { width: 50px !important; }
+.width-70 { width: 70px !important; }
+
+.heigth-50 {
+    heigth: 50px !important;
+}
+
 .display-none {
     display: none !important;
 }
 
 
-.f-size-1-5-em {
-    font-size: 1.5em;
+.f-size-1-0-em {
+    font-size: 1.0em;
 }
+
+.font-user-name {
+    font-size: 16px;font-weight: 600;
+}
+
+.post-notification {
+    color: #999;font-size: 13px;
+}
+

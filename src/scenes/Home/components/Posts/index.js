@@ -1,0 +1,44 @@
+import React, { Component } from 'react';
+import { Link, withRouter, Route, BrowserRouter } from 'react-router-dom';
+import { connect } from 'react-redux'
+
+import Post from 'scenes/Home/components/Post/index'
+import * as postsApi from 'scenes/Home/components/Posts/api'
+
+class Posts extends Component {
+    state = {
+        posts: []
+    }
+
+    componentDidMount(teste) {
+        console.log('teste', teste)
+        console.log('this.props', this.props)
+        
+        postsApi.getPosts(this.props.usersIds).then((r) => {
+            console.log('then', r)
+            this.setState({
+                posts: r.posts
+            })
+        }).catch((e) => {
+            console.log('catch', e)
+        })
+    }
+
+    render() {
+        return (
+            <div>
+                {this.state.posts.map((post) => {
+                    return <Post key={post._id} {...post} /> ;
+                })}
+            </div>
+        );
+    }
+}
+
+const mapStateToProps = (state, teste) => {
+    return {
+        user: state.session.user
+    }
+};
+
+export default Posts;

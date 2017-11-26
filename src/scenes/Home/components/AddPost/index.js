@@ -44,6 +44,12 @@ class AddPost extends Component {
 		})
 	}
 
+	componentDidMount() {
+		if (this.props.boxCollapseState !== undefined && !this.props.boxCollapseState ) {
+			this.setState({ collapse: false });
+		}
+	}
+
 	render() {
 		return (
 			<div className="box box-default">
@@ -60,7 +66,7 @@ class AddPost extends Component {
 							<div className="row">
 								<div className="col-md-4">
 									<div className="checkbox">
-										<label className="f-size-1-5-em">
+										<label className="f-size-1-0-em">
 											<input
 												type="checkbox"
 												value="publicacao"
@@ -74,7 +80,7 @@ class AddPost extends Component {
 								</div>
 								<div className="col-md-4">
 									<div className="checkbox">
-										<label className="f-size-1-5-em" >
+										<label className="f-size-1-0-em" >
 											<input
 												type="checkbox"
 												value="compra"
@@ -88,7 +94,7 @@ class AddPost extends Component {
 								</div>
 								<div className="col-md-4">
 									<div className="checkbox">
-										<label className="f-size-1-5-em">
+										<label className="f-size-1-0-em">
 											<input
 												type="checkbox"
 												value="venda"
@@ -176,9 +182,10 @@ class AddPost extends Component {
 							<a href="" className="btn btn-success">
 								Adicionar fotos
 							</a>
-							<button  
+							<button
 								className="btn btn-success pull-right"
 								onClick={this.handlePublicar}
+								disabled={ (this.state.tipo === 'publicacao' && !this.state.texto ? true : false) }
 							>
 								Publicar
 							</button>
