@@ -56,7 +56,7 @@ export default [{
 	component: About,
 	permissions: 'agricultor empresa'
 }, {
-	path: '/home/profile',
+	path: '/home/profile/:userId',
 	component: Profile,
 	permissions: 'agricultor empresa'
 }, {

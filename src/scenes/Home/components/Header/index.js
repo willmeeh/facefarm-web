@@ -3,11 +3,13 @@ import { connect } from 'react-redux'
 import { withRouter, Link } from 'react-router-dom';
 
 import Search from 'scenes/Home/components/Header/components/Search/index';
+import * as sessionSelectors from 'services/session/selectors';
+import * as sessionActions from 'services/session/actions';
 
 class Header extends Component {
-
+sessionSelectors
   handleLogout = () => {
-    this.props.dispatch(resetApplication());
+    this.props.dispatch(sessionActions.resetApplication());
     this.props.history.push('/login');
   }
 
@@ -93,7 +95,7 @@ class Header extends Component {
                     </li>
                     <li className="user-footer">
                       <div className="pull-left">
-                        <Link to="/home/profile" className="btn btn-default btn-flat">
+                        <Link to={`/home/profile/${sessionSelectors.getLoggedUserId()}`} className="btn btn-default btn-flat">
                           Perfil
                         </Link>
                       </div>

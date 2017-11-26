@@ -23,7 +23,7 @@ class Currency extends Component {
 
   search = () => {
     const params = `/${this.props.match.params.searchParam}/10/10`
-    searchResultApi.searchUserByName(params)
+    searchResultApi.searchUsersByName(params)
       .then((r) => {
         this.setState({ searchResult: r.searchResult })
       }).catch((e) => {

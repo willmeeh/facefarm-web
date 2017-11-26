@@ -6,11 +6,34 @@ import './styles.scss';
 
 import AddPost from 'scenes/Home/components/AddPost/index';
 import Posts from 'scenes/Home/components/Posts/index';
+import * as profileApi from 'scenes/Home/scenes/Profile/api'
 
 class Profile extends Component {
 
+	state = {
+		user: {}
+	}
+
 	refreshTimeLine = () => {
 		this.forceUpdate();
+	}
+
+	componentDidMount() {
+		this.getProfile();	
+	}
+
+	getProfile = () => {
+		const userId = `/${this.props.match.params.userId}`
+		profileApi.getUserById(userId)
+			.then((r) => {
+				if (r['agricultor']) {
+					this.setState({ user: r['agricultor'] })
+				} else if (r['empresa']) {
+					this.setState({ user: r['empresa'] })
+				}
+			}).catch((e) => {
+
+			});
 	}
 
 	render() {
@@ -22,7 +45,7 @@ class Profile extends Component {
 						<div className="box-body box-profile">
 							<img className="profile-user-img img-responsive img-circle" src="../../resources/images/user_image.png" alt="User profile picture" />
 
-							<h3 className="profile-username text-center">{this.props.session.user.nomeCompleto}</h3>
+							<h3 className="profile-username text-center">{this.state.user.nomeCompleto}</h3>
 
 							<p className="text-muted text-center">Plantador de arroz</p>
 
@@ -89,7 +112,7 @@ class Profile extends Component {
 				</div>
 				<div className="col-md-9">
 					<AddPost refreshTimeLine={this.refreshTimeLine} />
-					<Posts usersIds={{ usersIds: [this.props.session.user._id] }} refreshTimeLine={this.refreshTimeLine} />
+					<Posts usersIds={{ usersIds: [this.state.user._id] }} refreshTimeLine={this.refreshTimeLine} />
 				</div>
 			</div>
 		);

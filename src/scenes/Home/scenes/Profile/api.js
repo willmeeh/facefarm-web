@@ -1,12 +1,12 @@
 import { fetchApi } from 'services/api';
 
 const endPoints = {
-	searchUsersByName: '/users',
+	getUserById: '/users',
 };
 
-export const searchUsersByName = (params) => {
+export const getUserById = (params) => {
 	return fetchApi(
-		`${endPoints.searchUsersByName}${params}`, 
+		`${endPoints.getUserById}${params}`, 
 		null, 
 		'get', 
 		{ "Content-Type": "application/json" }
