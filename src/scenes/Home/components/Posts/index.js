@@ -11,8 +11,6 @@ class Posts extends Component {
     }
 
     componentDidMount() {
-        console.log('this.props', this.props)
-        
         postsApi.getPosts(this.props.usersIds).then((r) => {
             console.log('then', r)
             this.setState({
@@ -26,7 +24,6 @@ class Posts extends Component {
     
     componentWillReceiveProps(newProps) {
         postsApi.getPosts(newProps.usersIds).then((r) => {
-            console.log('then', r)
             this.setState({
                 posts: r.posts
             })
@@ -40,7 +37,6 @@ class Posts extends Component {
             <div>
                 
                 {this.state.posts && this.state.posts.map((post) => {
-                    {console.log('Posts props', this.props.refreshTimeLine)}
                     return <Post key={post._id} {...post} refreshTimeLine={this.props.refreshTimeLine} /> ;
                 })}
             </div>

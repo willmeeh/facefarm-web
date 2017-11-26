@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link, withRouter, Route, BrowserRouter } from 'react-router-dom';
 import { connect } from 'react-redux'
 
-import Header from './components/Header';
+import Header from 'scenes/Home/components/Header/index';
 import MenuLeft from './components/MenuLeft';
 import Footer from './components/Footer';
 import MenuRight from './components/MenuRight/index';

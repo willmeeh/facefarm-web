@@ -14,6 +14,7 @@ import WeatherForecast from 'scenes/Home/scenes/Weather/index';
 import Commodities from 'scenes/Home/scenes/Commodities/index';
 import Profile from 'scenes/Home/scenes/Profile/index';
 import TimeLine from 'scenes/Home/scenes/TimeLine/index';
+import SearchResult from 'scenes/Home/scenes/SearchResult/index';
 
 import { requireAuthentication } from 'components/AuthenticatedComponent/index';
 
@@ -57,6 +58,10 @@ export default [{
 }, {
 	path: '/home/profile',
 	component: Profile,
+	permissions: 'agricultor empresa'
+}, {
+	path: '/home/searchResult/:searchParam',
+	component: SearchResult,
 	permissions: 'agricultor empresa'
 }
 ];

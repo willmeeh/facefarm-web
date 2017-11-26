@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { withRouter, Link } from 'react-router-dom';
 
+import Search from 'scenes/Home/components/Header/components/Search/index';
+
 class Header extends Component {
 
   handleLogout = () => {
@@ -19,12 +21,15 @@ class Header extends Component {
             <span className="logo-lg"><b>Face</b>FARM</span>
           </Link>
 
+
           <nav className="navbar navbar-static-top">
             <span className="sidebar-toggle" data-toggle="offcanvas" role="button">
               <span className="sr-only">Toggle navigation</span>
             </span>
+            <Search />
             <div className="navbar-custom-menu">
               <ul className="nav navbar-nav">
+                
                 <li className="dropdown notifications-menu">
                   <a href="" className="dropdown-toggle" data-toggle="dropdown">
                     <i className="fa fa-bell-o"></i>

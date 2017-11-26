@@ -16,10 +16,7 @@ class Post extends Component {
 
   handleRemovePost = () => {
     let fn = this.props.refreshTimeLine();
-    console.log('aaaaaaaaaaaaaaaaaaaaaaa', this.props.refreshTimeLine)
     postApi.remove(this.props._id).then((r) => {
-      console.log('postApi.remove', r)
-      console.log('bbbbbbbbbbbbbbbbbbbbbbbbbbbb', this.props.refreshTimeLine)
       if (this.props.refreshTimeLine) {
 				this.props.refreshTimeLine();
 			}
