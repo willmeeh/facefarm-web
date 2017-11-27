@@ -20,7 +20,6 @@ class AddPost extends Component {
 		this.setState({
 			collapse: !this.state.collapse
 		});
-		console.log('addPost', this.state)
 	}
 	handleChangeTipo = (event) => { this.setState({ tipo: event.target.value }) };
 	handleChangeTexto = (event) => { this.setState({ texto: event.target.value }); }

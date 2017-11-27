@@ -7,7 +7,7 @@ import * as sessionSelectors from 'services/session/selectors';
 import * as sessionActions from 'services/session/actions';
 
 class Header extends Component {
-sessionSelectors
+
   handleLogout = () => {
     this.props.dispatch(sessionActions.resetApplication());
     this.props.history.push('/login');

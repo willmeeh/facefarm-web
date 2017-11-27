@@ -23,10 +23,20 @@ class Post extends Component {
     })
   }
 
+  handleUserNameClicked = (e) => {
+    e.preventDefault()
+    let id;
+    if (this.props['agricultor']) {
+      id = this.props['agricultor']._id;
+    } else if (this.props['empresa']) {
+      id = this.props['empresa']._id;
+    }
+    this.props.history.push(`/home/profile/${id}`);
+  }
+
   render() {
     return (
       <div className="nav-tabs-custom">
-      {console.log('Post props', this.props)}
         <ul className="nav nav-tabs pull-right">
           <li className="dropdown">
             <a aria-expanded="false" className="dropdown-toggle" data-toggle="dropdown" href="">
@@ -57,7 +67,10 @@ class Post extends Component {
               <div className="col-xs-6 pull-left" >
                 <div className="row" >
                   <a href="">
-                    <span className="username font-user-name">
+                    <span 
+                      className="username font-user-name"
+                      onClick={this.handleUserNameClicked}  
+                    >
                       {
                         (this.props.agricultor && this.props.agricultor.nomeCompleto)
                         ||
@@ -153,4 +166,4 @@ const mapStateToProps = (state, teste) => {
   }
 };
 
-export default Post;
+export default withRouter(Post);

@@ -12,7 +12,6 @@ class Posts extends Component {
 
     componentDidMount() {
         postsApi.getPosts(this.props.usersIds).then((r) => {
-            console.log('then', r)
             this.setState({
                 posts: r.posts
             })

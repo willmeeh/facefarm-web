@@ -19,7 +19,15 @@ class Profile extends Component {
 	}
 
 	componentDidMount() {
-		this.getProfile();	
+		setTimeout(() => {
+			this.getProfile();
+		}, 0)
+	}
+
+	componentWillReceiveProps() {
+		setTimeout(() => {
+			this.getProfile();
+		}, 0)
 	}
 
 	getProfile = () => {
@@ -31,6 +39,7 @@ class Profile extends Component {
 				} else if (r['empresa']) {
 					this.setState({ user: r['empresa'] })
 				}
+				this.refreshTimeLine();
 			}).catch((e) => {
 
 			});
@@ -111,7 +120,11 @@ class Profile extends Component {
 					</div>
 				</div>
 				<div className="col-md-9">
-					<AddPost refreshTimeLine={this.refreshTimeLine} />
+					{this.state.user._id === this.props.session.user._id &&
+						<AddPost
+							refreshTimeLine={this.refreshTimeLine}
+						/>
+					}
 					<Posts usersIds={{ usersIds: [this.state.user._id] }} refreshTimeLine={this.refreshTimeLine} />
 				</div>
 			</div>

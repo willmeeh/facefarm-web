@@ -7,6 +7,10 @@ import defaultUserImg from 'scenes/images/user_image.png'
 
 class Post extends Component {
 
+	handlePerfilClick = () => {
+		this.props.history.push(`/home/profile/${this.props._id}`);
+	}
+
 	render() {
 		return (
 			<div className="box box-solid">
@@ -15,7 +19,6 @@ class Post extends Component {
 						<div className="user-block margin-none">
 							<img className="width-50 heigth-50" src={defaultUserImg} alt="user image" />
 							<span className="username">
-								{console.log(this.props)}
 								<a href="#">{this.props.nomeCompleto}</a>
 								<button className="btn btn-success pull-right mright-5">
 									Seguir
@@ -23,7 +26,10 @@ class Post extends Component {
 								<button className="btn btn-danger pull-right mright-5">
 									Deixar de seguir
 								</button>
-								<button className="btn btn-primary pull-right mright-5">
+								<button 
+									className="btn btn-primary pull-right mright-5"
+									onClick={this.handlePerfilClick}
+									>
 									Perfil
 								</button>
 							</span>
@@ -42,4 +48,4 @@ const mapStateToProps = (state, teste) => {
 	}
 };
 
-export default Post;
+export default withRouter(Post);
