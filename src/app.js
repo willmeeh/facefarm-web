@@ -4,7 +4,12 @@ import { Provider } from 'react-redux';
 
 import configureStore from './services/configureStore';
 import AppRouter from './router/AppRouter';
-import { initApplication } from './services/session/actions';
+import * as sessionApi from 'services/session/api'
+import { 
+  initApplication, 
+  popularListFollowing,  
+  popularListFollowers
+} from './services/session/actions';
 
 import 'normalize.css/normalize.css';
 import './css/styles.scss';
@@ -16,6 +21,16 @@ store.dispatch(initApplication());
 window.store = store;
 
 class App extends Component {
+
+  componentDidMount() {
+    sessionApi.getListFollowing().then((r) => {
+      store.dispatch(popularListFollowing(r.listFollowing));
+    });
+    sessionApi.popularListFollowers().then((r) => {
+      store.dispatch(popularListFollowers(r.listFollowing));
+    });
+  }
+
   render() {
     return (
       <Provider store={store}>

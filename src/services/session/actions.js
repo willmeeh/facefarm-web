@@ -1,3 +1,4 @@
+
 export const initApplication = () => ({
   type: 'INIT_APPLICATION'
 });
@@ -20,3 +21,14 @@ export const setTranslateStrings = (translateStrings = {}) => ({
   type: 'SET_TRANSLATE_STRINGS',
   translateStrings
 });
+
+export const popularListFollowing = (listFollowing = []) => ({
+  type: 'POPULATE_LIST_FOLLOWING',
+  listFollowing
+});
+
+export const popularListFollowers = (listFollowers = []) => ({
+  type: 'POPULATE_LIST_FOLLOWERS',
+  listFollowers
+});
+

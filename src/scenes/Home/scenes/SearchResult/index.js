@@ -26,6 +26,7 @@ class Currency extends Component {
     searchResultApi.searchUsersByName(params)
       .then((r) => {
         this.setState({ searchResult: r.searchResult })
+        console.log('r.searchResult', r.searchResult)
       }).catch((e) => {
 
       });

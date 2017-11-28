@@ -29,7 +29,7 @@ export default (state = sessionReducerDefaultState, action) => {
         token
       };
     }
-    case 'RESET_APPLICATION': 
+    case 'RESET_APPLICATION':
       localStorage.clear();
       sessionStorage.clear();
       return {
@@ -58,6 +58,16 @@ export default (state = sessionReducerDefaultState, action) => {
       return {
         ...state,
         translateStrings: action.translateStrings
+      };
+    case 'POPULATE_LIST_FOLLOWING':
+      return {
+        ...state,
+        listFollowing: action.listFollowing
+      };
+    case 'POPULATE_LIST_FOLLOWERS':
+      return {
+        ...state,
+        listFollowers: action.listFollowers
       };
     default:
       return state;

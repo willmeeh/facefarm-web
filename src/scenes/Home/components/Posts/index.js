@@ -44,9 +44,11 @@ class Posts extends Component {
 }
 
 const mapStateToProps = (state, teste) => {
-    return {
-        user: state.session.user
-    }
+	return {
+		listFollowing: state.session.listFollowing,
+		listFollowers: state.session.listFollowers,
+
+	}
 };
 
-export default Posts;
+export default connect(mapStateToProps)(Posts);
