@@ -11,11 +11,22 @@ class TimeLine extends Component {
     this.forceUpdate();
   }
 
+  getListUsers = () => {
+    let usersIds = [];
+    usersIds.push(this.props.session.user._id)
+    if (this.props.session.listFollowing) {
+      this.props.session.listFollowing.forEach((item) => {
+        usersIds.push(item._id);
+      });
+    }
+    return usersIds;
+  }
+
   render() {
     return (
       <div>
         <AddPost refreshTimeLine={this.refreshTimeLine} />
-        <Posts usersIds={ {usersIds: [this.props.session.user._id]} } refreshTimeLine={this.refreshTimeLine} />
+        <Posts usersIds={this.getListUsers()} refreshTimeLine={this.refreshTimeLine} />
       </div>
 
     );

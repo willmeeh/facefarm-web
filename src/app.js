@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 
 import configureStore from './services/configureStore';
 import AppRouter from './router/AppRouter';
-import * as sessionApi from 'services/session/api'
+import * as userApi from 'services/user/api'
 import { 
   initApplication, 
   popularListFollowing,  
@@ -23,10 +23,10 @@ window.store = store;
 class App extends Component {
 
   componentDidMount() {
-    sessionApi.getListFollowing().then((r) => {
+    userApi.getListFollowing().then((r) => {
       store.dispatch(popularListFollowing(r.listFollowing));
     });
-    sessionApi.popularListFollowers().then((r) => {
+    userApi.popularListFollowers().then((r) => {
       store.dispatch(popularListFollowers(r.listFollowing));
     });
   }

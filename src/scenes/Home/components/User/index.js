@@ -8,8 +8,7 @@ import {
 	popularListFollowers
   } from 'services/session/actions';
 
-import * as userApi from 'scenes/Home/components/User/api'
-import * as sessionApi from 'services/session/api'
+import * as userApi from 'services/user/api'
 
 import defaultUserImg from 'scenes/images/user_image.png'
 
@@ -25,8 +24,7 @@ class Post extends Component {
 
 	handleSeguirClick = () => {
 		userApi.seguirUsuario({ id: this.props._id }).then((r) => {
-			console.log('r', r)
-			sessionApi.getListFollowing().then((r) => {
+			userApi.getListFollowing().then((r) => {
 				store.dispatch(popularListFollowing(r.listFollowing));
 			  });
 		}).catch((e) => {
@@ -36,8 +34,7 @@ class Post extends Component {
 
 	handleDeixarDeSeguirClick = () => {
 		userApi.deixarDeSeguirUsuario({ id: this.props._id }).then((r) => {
-			console.log('r', r)
-			sessionApi.getListFollowing().then((r) => {
+			userApi.getListFollowing().then((r) => {
 				store.dispatch(popularListFollowing(r.listFollowing));
 			  });
 		}).catch((e) => {
@@ -84,7 +81,6 @@ class Post extends Component {
 								>
 									Perfil
 								</button>
-								{console.log('listFollowing', this.props.listFollowing)}
 							</span>
 						</div>
 					</div>
@@ -99,7 +95,6 @@ const mapStateToProps = (state, teste) => {
 	return {
 		listFollowing: state.session.listFollowing,
 		listFollowers: state.session.listFollowers,
-
 	}
 };
 

@@ -36,7 +36,6 @@ class AddPost extends Component {
 			if (this.props.refreshTimeLine) {
 				this.props.refreshTimeLine();
 			}
-			console.log(r);
 		})
 	}
 

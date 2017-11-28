@@ -8,6 +8,13 @@ import AddPost from 'scenes/Home/components/AddPost/index';
 import Posts from 'scenes/Home/components/Posts/index';
 import * as profileApi from 'scenes/Home/scenes/Profile/api'
 
+import { 
+	popularListFollowing,  
+	popularListFollowers
+  } from 'services/session/actions';
+
+import * as userApi from 'services/user/api'
+
 class Profile extends Component {
 
 	state = {
@@ -45,6 +52,39 @@ class Profile extends Component {
 			});
 	}
 
+	handleSeguirClick = () => {
+		userApi.seguirUsuario({ id: this.state.user._id }).then((r) => {
+			userApi.getListFollowing().then((r) => {
+				store.dispatch(popularListFollowing(r.listFollowing));
+			  });
+		}).catch((e) => {
+			console.log('e', e)
+		});
+	}
+
+	handleDeixarDeSeguirClick = () => {
+		userApi.deixarDeSeguirUsuario({ id: this.state.user._id }).then((r) => {
+			userApi.getListFollowing().then((r) => {
+				store.dispatch(popularListFollowing(r.listFollowing));
+			  });
+		}).catch((e) => {
+			console.log('e', e)
+		});
+	}
+
+	checkIsFollowing = () => {
+
+		var isFollowing = false;
+		if (this.props.session.listFollowing) {
+			this.props.session.listFollowing.forEach((item) => {
+				if (item._id === this.state.user._id) {
+					isFollowing = true;
+				}
+			});
+		}
+		return isFollowing;
+	}
+
 	render() {
 		return (
 			<div className="row">
@@ -66,6 +106,18 @@ class Profile extends Component {
 									<b>Seguindo</b> <a className="pull-right">543</a>
 								</li>
 							</ul>
+							<button
+								className={this.checkIsFollowing() ? 'display-none' : 'btn btn-success width-100-por-cento'}
+								onClick={this.handleSeguirClick}
+							>
+								Seguir
+							</button>
+							<button
+								className={this.checkIsFollowing() ? 'btn btn-danger width-100-por-cento' : 'display-none'}
+								onClick={this.handleDeixarDeSeguirClick}
+							>
+								Deixar de seguir
+							</button>
 						</div>
 					</div>
 
@@ -125,7 +177,7 @@ class Profile extends Component {
 							refreshTimeLine={this.refreshTimeLine}
 						/>
 					}
-					<Posts usersIds={{ usersIds: [this.state.user._id] }} refreshTimeLine={this.refreshTimeLine} />
+					<Posts usersIds={[this.state.user._id]} refreshTimeLine={this.refreshTimeLine} />
 				</div>
 			</div>
 		);

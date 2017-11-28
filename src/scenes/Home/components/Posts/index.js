@@ -11,7 +11,7 @@ class Posts extends Component {
     }
 
     componentDidMount() {
-        postsApi.getPosts(this.props.usersIds).then((r) => {
+        postsApi.getPosts({ usersIds: this.props.usersIds }).then((r) => {
             this.setState({
                 posts: r.posts
             })
@@ -20,9 +20,9 @@ class Posts extends Component {
         })
     }
 
-    
+
     componentWillReceiveProps(newProps) {
-        postsApi.getPosts(newProps.usersIds).then((r) => {
+        postsApi.getPosts({ usersIds: newProps.usersIds }).then((r) => {
             this.setState({
                 posts: r.posts
             })
@@ -34,21 +34,21 @@ class Posts extends Component {
     render() {
         return (
             <div>
-                
+
                 {this.state.posts && this.state.posts.map((post) => {
-                    return <Post key={post._id} {...post} refreshTimeLine={this.props.refreshTimeLine} /> ;
+                    return <Post key={post._id} {...post} refreshTimeLine={this.props.refreshTimeLine} />;
                 })}
             </div>
         );
     }
 }
 
-const mapStateToProps = (state, teste) => {
-	return {
-		listFollowing: state.session.listFollowing,
-		listFollowers: state.session.listFollowers,
+// const mapStateToProps = (state, teste) => {
+//     return {
+//         listFollowing: state.session.listFollowing,
+//         listFollowers: state.session.listFollowers,
 
-	}
-};
+//     }
+// };
 
-export default connect(mapStateToProps)(Posts);
+export default Posts;
