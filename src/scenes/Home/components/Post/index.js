@@ -105,7 +105,7 @@ class Post extends Component {
               <div className="row mbottom-10">
                 <div className="col-md-12">
                   <h4>
-                    Compro arroz
+                  {this.props.texto}
                 </h4>
                   <hr />
 
@@ -123,8 +123,7 @@ class Post extends Component {
                 </div>
               </div>
             </div>
-            <p>{this.props.texto}</p>
-            <div className="row margin-bottom">
+            {/* <div className="row margin-bottom">
               <div className="col-sm-6">
                 <img className="img-responsive" src="../resources/images/image_templates/Agricultura.jpg" alt="Photo" />
               </div>
@@ -142,7 +141,7 @@ class Post extends Component {
                   </div>
                 </div>
               </div>
-            </div>
+            </div> */}
 
             <ul className="list-inline">
               <li><a href="#" className="link-black text-sm"><i className="fa fa-share margin-r-5"></i> Compartilhar</a></li>
