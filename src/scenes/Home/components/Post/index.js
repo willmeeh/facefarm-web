@@ -130,7 +130,7 @@ class Post extends Component {
               {this.props.tipo === 'compra' || this.props.tipo === 'venda' ? console.log('this.propsthis.propsthis.propsthis.propsthis.props', this.props) : ''}
               <div className="row">
                 <div className="col-md-12">
-                  <span className="pull-left"><label>Categoria:</label> Arroz</span>
+                  <span className="pull-left"><label>Categoria:</label> {this.props.cultura}</span>
                 </div>
               </div>
               <div className="row ">
@@ -141,7 +141,7 @@ class Post extends Component {
                   <div className="row">
                     <div className="col-md-4">
                       <span className="pull-left">Quantidade total: </span><span className="pull-right">{this.props.quantidadeTotal}</span><br />
-                      <span className="pull-left">Medida: </span><span className="pull-right">{this.props.quantidadeTotal}{this.props.unidadeMedida} </span><br />
+                      <span className="pull-left">Medida: </span><span className="pull-right">{this.props.quantidadeTotal} {this.props.unidadeMedida} </span><br />
                       <span className="pull-left">Valor: </span><span className="pull-right">R$ {this.props.preco},00 </span>
                     </div>
                     <div className="col-md-4">
