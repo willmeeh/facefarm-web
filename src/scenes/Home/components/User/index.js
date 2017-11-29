@@ -2,17 +2,28 @@ import React, { Component } from 'react';
 import { Link, withRouter, Route, BrowserRouter } from 'react-router-dom';
 import { connect } from 'react-redux'
 
-import * as sessionSelectors from 'services/session/selectors';
-import { 
-	popularListFollowing,  
+import {
+	popularListFollowing,
 	popularListFollowers
-  } from 'services/session/actions';
+} from 'services/session/actions';
 
 import * as userApi from 'services/user/api'
-
+import apiConfig from 'services/api/config';
 import defaultUserImg from 'scenes/images/user_image.png'
 
 class Post extends Component {
+
+	state = {
+		profileImage: defaultUserImg
+	}
+
+	componentDidMount() {
+		this.setProfileImage();
+	}
+
+	componentWillReceiveProps() {
+		this.setProfileImage();
+	}
 
 	handlePerfilClick = () => {
 		this.props.history.push(`/home/profile/${this.props._id}`);
@@ -26,7 +37,7 @@ class Post extends Component {
 		userApi.seguirUsuario({ id: this.props._id }).then((r) => {
 			userApi.getListFollowing().then((r) => {
 				store.dispatch(popularListFollowing(r.listFollowing));
-			  });
+			});
 		}).catch((e) => {
 			console.log('e', e)
 		});
@@ -36,7 +47,7 @@ class Post extends Component {
 		userApi.deixarDeSeguirUsuario({ id: this.props._id }).then((r) => {
 			userApi.getListFollowing().then((r) => {
 				store.dispatch(popularListFollowing(r.listFollowing));
-			  });
+			});
 		}).catch((e) => {
 			console.log('e', e)
 		});
@@ -54,13 +65,21 @@ class Post extends Component {
 		return isFollowing;
 	}
 
+	setProfileImage = () => {
+		if (this.props && this.props.imagemPerfil) {
+			this.setState({ profileImage: `${apiConfig.url}${this.props.imagemPerfil}` })
+		} else {
+			this.setState({ profileImage: defaultUserImg })
+		}
+	}
+
 	render() {
 		return (
 			<div className="box box-solid">
 				<div className="box-body">
 					<div className="post">
 						<div className="user-block margin-none">
-							<img className="width-50 heigth-50" src={defaultUserImg} alt="user image" />
+							<img className="width-50 heigth-50" src={this.state.profileImage} alt="user image" />
 							<span className="username">
 								<a href="#" onClick={this.handleUserNameClick}>{this.props.nomeCompleto}</a>
 								<button

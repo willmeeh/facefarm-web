@@ -1,7 +1,7 @@
 /* global fetch */
 
-import apiConfig from './config';
-import * as sessionSelectors from '../session/selectors';
+import apiConfig from 'services/api/config';
+import * as sessionSelectors from 'services/session/selectors';
 
 export const handleErrors = (response) => {
 

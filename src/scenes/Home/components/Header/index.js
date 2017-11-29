@@ -5,13 +5,35 @@ import { withRouter, Link } from 'react-router-dom';
 import Search from 'scenes/Home/components/Header/components/Search/index';
 import * as sessionSelectors from 'services/session/selectors';
 import * as sessionActions from 'services/session/actions';
+import apiConfig from 'services/api/config';
+import defaultUserImg from 'scenes/images/user_image.png'
 
 class Header extends Component {
+
+  state = {
+		profileImage: defaultUserImg
+	}
 
   handleLogout = () => {
     this.props.dispatch(sessionActions.resetApplication());
     this.props.history.push('/login');
   }
+
+  componentDidMount() {
+    this.setProfileImage();  
+  }
+
+  componentWillReceiveProps() {
+    this.setProfileImage();  
+  }
+
+  setProfileImage = () => {
+		if (this.props.user && this.props.user.imagemPerfil) {
+			this.setState({ profileImage: `${apiConfig.url}${this.props.user.imagemPerfil}` })
+		} else {
+			this.setState({ profileImage: defaultUserImg })
+		}
+	}
 
   render() {
     return (
@@ -66,14 +88,14 @@ class Header extends Component {
                 </li>
                 <li className="dropdown user user-menu">
                   <a href="" className="dropdown-toggle" data-toggle="dropdown">
-                    <img src="/resources/images/user_image.png" className="user-image" alt="User Image" />
+                    <img src={this.state.profileImage} className="user-image" alt="User Image" />
                     <span className="hidden-xs">
                       {this.props.user && this.props.user.nomeCompleto}
                     </span>
                   </a>
                   <ul className="dropdown-menu">
                     <li className="user-header">
-                      <img src="/resources/images/user_image.png" className="img-circle" alt="User Image" />
+                      <img src={this.state.profileImage} className="img-circle" alt="User Image" />
 
                       <p>
                         Fulano de tal - Plantador de arroz
@@ -116,6 +138,10 @@ class Header extends Component {
   }
 }
 
-Header = connect()(Header);
+const mapStateToProps = (state, teste) => {
+	return {
+		user: state.session.user,
+	}
+};
 
-export default withRouter(Header);
+export default withRouter(connect(mapStateToProps)(Header));

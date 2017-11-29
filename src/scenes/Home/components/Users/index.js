@@ -16,10 +16,4 @@ class Users extends Component {
     }
 }
 
-const mapStateToProps = (state, teste) => {
-    return {
-        user: state.session.user
-    }
-};
-
 export default Users;

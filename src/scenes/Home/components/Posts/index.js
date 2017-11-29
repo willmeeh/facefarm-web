@@ -20,7 +20,6 @@ class Posts extends Component {
         })
     }
 
-
     componentWillReceiveProps(newProps) {
         postsApi.getPosts({ usersIds: newProps.usersIds }).then((r) => {
             this.setState({

@@ -6,19 +6,25 @@ import './styles.scss';
 
 import AddPost from 'scenes/Home/components/AddPost/index';
 import Posts from 'scenes/Home/components/Posts/index';
-import * as profileApi from 'scenes/Home/scenes/Profile/api'
+import ChangeImageProfile from 'scenes/Home/scenes/Profile/components/ChangeImageProfile/index';
 
-import { 
-	popularListFollowing,  
-	popularListFollowers
-  } from 'services/session/actions';
+import defaultUserImg from 'scenes/images/user_image.png'
 
+import * as sessionSelectors from 'services/session/selectors';
 import * as userApi from 'services/user/api'
+import apiConfig from 'services/api/config';
+import * as profileApi from 'scenes/Home/scenes/Profile/api';
+import {
+	popularListFollowing,
+	popularListFollowers
+} from 'services/session/actions';
 
 class Profile extends Component {
 
 	state = {
-		user: {}
+		user: {},
+		isChangintImgProfile: false,
+		profileImage: defaultUserImg
 	}
 
 	refreshTimeLine = () => {
@@ -47,6 +53,7 @@ class Profile extends Component {
 					this.setState({ user: r['empresa'] })
 				}
 				this.refreshTimeLine();
+				this.setProfileImage();
 			}).catch((e) => {
 
 			});
@@ -56,7 +63,7 @@ class Profile extends Component {
 		userApi.seguirUsuario({ id: this.state.user._id }).then((r) => {
 			userApi.getListFollowing().then((r) => {
 				store.dispatch(popularListFollowing(r.listFollowing));
-			  });
+			});
 		}).catch((e) => {
 			console.log('e', e)
 		});
@@ -66,10 +73,14 @@ class Profile extends Component {
 		userApi.deixarDeSeguirUsuario({ id: this.state.user._id }).then((r) => {
 			userApi.getListFollowing().then((r) => {
 				store.dispatch(popularListFollowing(r.listFollowing));
-			  });
+			});
 		}).catch((e) => {
 			console.log('e', e)
 		});
+	}
+
+	isCurrentLoggedUser = () => {
+		return this.props.session.user._id === this.state.user._id ? true : false
 	}
 
 	checkIsFollowing = () => {
@@ -85,14 +96,35 @@ class Profile extends Component {
 		return isFollowing;
 	}
 
+	handleProfileImageClick = () => {
+		if (this.props.session.user._id === this.state.user._id) {
+			this.setState({ isChangintImgProfile: true })
+		}
+	}
+
+	closeProfileImageChangeModal = () => {
+		this.setState({ isChangintImgProfile: false })
+		location.reload();
+	}
+
+	setProfileImage = () => {
+		if (this.state.user && this.state.user.imagemPerfil) {
+			this.setState({ profileImage: `${apiConfig.url}${this.state.user.imagemPerfil}` })
+		} else {
+			this.setState({ profileImage: defaultUserImg })
+		}
+	}
+
 	render() {
 		return (
 			<div className="row">
 				<div className="col-md-3">
 
+					<ChangeImageProfile handleClose={this.closeProfileImageChangeModal} user={this.props.session.user} isChangintImgProfile={this.state.isChangintImgProfile} />
+
 					<div className="box box-success">
 						<div className="box-body box-profile">
-							<img className="profile-user-img img-responsive img-circle" src="../../resources/images/user_image.png" alt="User profile picture" />
+							<img onClick={this.handleProfileImageClick} className="img-thumbnail profile-image" src={this.state.profileImage} alt="User profile picture" />
 
 							<h3 className="profile-username text-center">{this.state.user.nomeCompleto}</h3>
 
@@ -100,24 +132,26 @@ class Profile extends Component {
 
 							<ul className="list-group list-group-unbordered">
 								<li className="list-group-item">
-									<b>Seguidores</b> <a className="pull-right">1,322</a>
+									<b>Seguidores</b> <a className="pull-right">{this.props.session.listFollowers && this.props.session.listFollowers.length}</a>
 								</li>
 								<li className="list-group-item">
-									<b>Seguindo</b> <a className="pull-right">543</a>
+									<b>Seguindo</b> <a className="pull-right">{this.props.session.listFollowing && this.props.session.listFollowing.length}</a>
 								</li>
 							</ul>
-							<button
-								className={this.checkIsFollowing() ? 'display-none' : 'btn btn-success width-100-por-cento'}
-								onClick={this.handleSeguirClick}
-							>
-								Seguir
-							</button>
-							<button
-								className={this.checkIsFollowing() ? 'btn btn-danger width-100-por-cento' : 'display-none'}
-								onClick={this.handleDeixarDeSeguirClick}
-							>
-								Deixar de seguir
-							</button>
+							<div className={this.isCurrentLoggedUser() ? 'display-none' : ''}>
+								<button
+									className={this.checkIsFollowing() ? 'display-none' : 'btn btn-success width-100-por-cento'}
+									onClick={this.handleSeguirClick}
+								>
+									Seguir
+								</button>
+								<button
+									className={this.checkIsFollowing() ? 'btn btn-danger width-100-por-cento' : 'display-none'}
+									onClick={this.handleDeixarDeSeguirClick}
+								>
+									Deixar de seguir
+								</button>
+							</div>
 						</div>
 					</div>
 
