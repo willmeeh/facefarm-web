@@ -30,6 +30,7 @@ class MessageLog extends Component {
       headers: headers,
     }).then((res) => {
       console.log('res of fetch', res)
+      // location.reload();
       this.props.handleClose();
     });
 

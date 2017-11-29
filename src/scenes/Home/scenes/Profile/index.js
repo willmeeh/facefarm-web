@@ -104,7 +104,6 @@ class Profile extends Component {
 
 	closeProfileImageChangeModal = () => {
 		this.setState({ isChangintImgProfile: false })
-		location.reload();
 	}
 
 	setProfileImage = () => {
