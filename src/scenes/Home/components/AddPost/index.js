@@ -41,6 +41,16 @@ class AddPost extends Component {
 		}).then((r) => {
 			if (this.props.refreshTimeLine) {
 				this.props.refreshTimeLine();
+
+				this.setState({
+					collapse: !this.state.collapse
+				});
+				this.setState({ texto: '' })
+				this.setState({ preco: 0 })
+				this.setState({ quantidadeTotal: 1 })
+				this.setState({ quantidadeMedida: 1 })
+				this.setState({ tipo: 'publicacao' })
+
 			}
 		})
 	}
@@ -114,7 +124,7 @@ class AddPost extends Component {
 								<div className="form-group">
 									<label>Cultura:</label>
 									<select className="form-control" 
-										onChange={this.handleChan0000geCultura}
+										onChange={this.handleChangeCultura}
 									>
 										<option value="Abacate">Abacate</option>
 										<option value="Açúcar">Açúcar</option>
