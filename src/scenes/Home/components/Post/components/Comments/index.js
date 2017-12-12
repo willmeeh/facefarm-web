@@ -10,6 +10,7 @@ class Comments extends Component {
         texto: ''
     }
 
+    
 
     handleChangetexto = (event) => { this.setState({ texto: event.taget.value});  }
 

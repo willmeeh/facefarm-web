@@ -7,8 +7,11 @@ import locale_br from "moment/locale/pt-br";
 import * as sessionSelectors from 'services/session/selectors';
 import * as postApi from 'scenes/Home/components/Post/api'
 import * as userApi from 'services/user/api'
+import * as comentarioApi from './components/Comments/api'
 import apiConfig from 'services/api/config';
 import defaultUserImg from 'scenes/images/user_image.png'
+
+import './styles.scss'
 
 class Post extends Component {
 
@@ -16,11 +19,39 @@ class Post extends Component {
     super(props);
   }
 
-
   state = {
     profileImage: defaultUserImg,
-    isFechingPictureProfile: false
+    isFechingPictureProfile: false,
+    texto: ''
   }
+
+  handleKeyPress = (e) => {
+    this.setState({ texto: e.target.value })
+  }
+
+  handleKeyPressEnter = (e) => {
+    if (e.key === 'Enter') {
+      var comentario = {
+        from: this.props._id,
+        idUsuario: this.props.user._id,
+        texto: this.state.texto
+      }
+      this.props.comentarios.push({ texto: this.state.texto });
+
+      comentarioApi.create(comentario)
+        .then((result) => {
+          console.log(result)
+
+          this.setState({ texto: '' })
+          var texto = this.refs.texto;
+          texto.value = "";
+        })
+    } else {
+      this.setState({ texto: e.target.value })
+    }
+  }
+
+
 
   componentDidMount() {
     moment.updateLocale("pt-br", locale_br);
@@ -96,7 +127,7 @@ class Post extends Component {
 
   render() {
     return (
-      <div className="nav-tabs-custom">
+      <div className={(this.props.finalizado === 'true') ? "nav-tabs-custom post-finalizado" : "nav-tabs-custom"}>
         <ul className="nav nav-tabs pull-right">
           <li className="dropdown">
             <a aria-expanded="false" className="dropdown-toggle" data-toggle="dropdown" href="">
@@ -156,7 +187,7 @@ class Post extends Component {
 
         <div className="tab-content">
           <div className="post">
-            <h1>{this.props.tipo.replace(/\b\w/g, a => a.toUpperCase() )}</h1>
+            <h1>{this.props.tipo.replace(/\b\w/g, a => a.toUpperCase())}</h1>
             {(this.props.finalizado === 'true') ?
               <h2><strong>Finalizado</strong></h2>
               : ""
@@ -170,11 +201,6 @@ class Post extends Component {
               </div>
               <div className="row ">
                 <div className="col-md-12">
-
-
-                  <h4>
-                    {this.props.texto}
-                  </h4>
                   <h4>
                     {this.props.texto}
                   </h4>
@@ -222,8 +248,29 @@ class Post extends Component {
                 <a href="#" className="link-black text-sm"><i className="fa fa-comments-o margin-r-5"></i> Comentários</a></li>
             </ul>
 
-            <input className="form-control input-sm disabled" type="text" placeholder="Digite um comentário" disabled={this.props.finalizado === 'true'} />
+
+            <input className="form-control input-sm disabled" ref="texto" onKeyUp={this.handleKeyPressEnter} type="text" placeholder="Digite um comentário" disabled={this.props.finalizado === 'true'} />
+
+
+
           </div>
+
+
+          {this.props.comentarios.map((comentario, index) => (
+            <div key={index} className="direct-chat-msg">
+              <div className="direct-chat-info clearfix">
+                {/* <span className="direct-chat-name pull-left">Alexander Pierce</span> */}
+                {/* <span className="direct-chat-timestamp pull-right">23 Jan 5:37 pm</span> */}
+              </div>
+              <div className="direct-chat-text">
+                {comentario.texto}
+              </div>
+            </div>
+          ))}
+
+
+
+
         </div>
       </div>
     );
@@ -236,4 +283,4 @@ const mapStateToProps = (state, teste) => {
   }
 };
 
-export default withRouter(Post);
+export default withRouter(connect(mapStateToProps)(Post));
